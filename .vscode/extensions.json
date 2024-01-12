@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "yzhang.markdown-all-in-one",
+        "patcx.vscode-nuget-gallery",
+        "eamodio.gitlens",
+        "streetsidesoftware.code-spell-checker",
+        "neikeq.godot-csharp-vscode"
+    ]
+}
