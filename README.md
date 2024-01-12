@@ -1,0 +1,1 @@
+﻿Some basic readme where I'll add notes on how to setup project, run, debug and test.
