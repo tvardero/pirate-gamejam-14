@@ -16,7 +16,7 @@ public partial class Box : StaticBody2D, IInteractable, IKillable
         ArgumentNullException.ThrowIfNull(_hitbox);
     }
 
-    public void Interact(Node initiator, string? interactionMethod = null)
+    public void Interact(Node initiator, string interactionMethod)
     {
         switch (interactionMethod)
         {
@@ -28,11 +28,7 @@ public partial class Box : StaticBody2D, IInteractable, IKillable
             case InputActionNames.SecondaryAction:
                 // for testing only: remove the box from level on secondary action
                 QueueFree();
-                break;
-
-            case null: return;
-
-            default: throw new ArgumentException("Unrecognized interaction method", nameof(interactionMethod));
+                break; 
         }
     }
 

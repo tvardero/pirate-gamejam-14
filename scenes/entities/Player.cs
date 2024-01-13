@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -9,6 +10,7 @@ public partial class Player : CharacterBody2D, IKillable
     private bool _playerRotationControllerByMouse;
     private Vector2 _inputVelocityDirection;
     private float _sprintStrength;
+    private RayCast2D _interactRay = null!;
 
     [Export]
     private float PlayerWalkingSpeed { get; set; } = 400;
@@ -24,6 +26,9 @@ public partial class Player : CharacterBody2D, IKillable
 
         DamageHitbox = GetNode<Area2D>("DamageHitbox");
         ArgumentNullException.ThrowIfNull(DamageHitbox);
+
+        _interactRay = GetNode<RayCast2D>("InteractRayCast");
+        ArgumentNullException.ThrowIfNull(_interactRay);
     }
 
     public override void _UnhandledInput(InputEvent input)
@@ -62,13 +67,13 @@ public partial class Player : CharacterBody2D, IKillable
 
         else if (input.IsAction(InputActionNames.PrimaryAction))
         {
-            // TODO
+            TryInteract(InputActionNames.PrimaryAction);
             inputIsHandled = true;
         }
 
         else if (input.IsAction(InputActionNames.SecondaryAction))
         {
-            // TODO
+            TryInteract(InputActionNames.SecondaryAction);
             inputIsHandled = true;
         }
 
@@ -127,5 +132,16 @@ public partial class Player : CharacterBody2D, IKillable
         var cameraVector = mousePosOnScreen - playerPosOnScreen;
 
         Rotation = -cameraVector.AngleTo(Vector2.Up);
+    }
+
+    private void TryInteract(string method)
+    {
+        _interactRay.ForceRaycastUpdate();
+        
+        var collision = _interactRay.GetCollider();
+        if (collision is IInteractable interactable && interactable.AvailableActionMethods.Contains(method))
+        {
+            interactable.Interact(this, method);
+        }
     }
 }

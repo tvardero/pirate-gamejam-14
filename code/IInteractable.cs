@@ -20,5 +20,5 @@ public interface IInteractable
     /// </summary>
     /// <param name="initiator">The object that tries to interact with the entity.</param>
     /// <param name="interactionMethod">Interaction method, for example using primary or secondary player action.</param>
-    void Interact(Node initiator, string? interactionMethod = null);
+    void Interact(Node initiator, string interactionMethod);
 }
