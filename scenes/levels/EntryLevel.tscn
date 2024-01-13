@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmjvpb4ac700"]
+
+[ext_resource type="Script" path="res://scenes/levels/EntryLevel.cs" id="1_dq2kb"]
+[ext_resource type="PackedScene" uid="uid://0lm2sybtqr4k" path="res://scenes/entities/Player.tscn" id="2_0phpg"]
+[ext_resource type="Texture2D" uid="uid://wp2aywjhthsq" path="res://icon.svg" id="2_sv2qg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e4vl"]
+size = Vector2(128, 128)
+
+[node name="EntryLevel" type="Node2D"]
+script = ExtResource("1_dq2kb")
+PlayerScene = ExtResource("2_0phpg")
+SpawnPlayerAtGameStart = true
+
+[node name="PlayerSpawn_0" type="Node2D" parent="."]
+position = Vector2(267, 171)
+
+[node name="Box" type="StaticBody2D" parent="."]
+position = Vector2(682, 271)
+rotation = 0.71733
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Box"]
+texture = ExtResource("2_sv2qg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+shape = SubResource("RectangleShape2D_6e4vl")
