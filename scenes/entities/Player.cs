@@ -1,14 +1,25 @@
+using System;
 using Godot;
 
 /// <summary>
 /// Player character logic.
 /// </summary>
-public partial class Player : CharacterBody2D
+public partial class Player : CharacterBody2D, IKillable
 {
     private bool _playerRotationControllerByMouse;
     private Vector2 _inputVelocityDirection;
 
     private float PlayerWalkingSpeed { get; set; } = 400;
+
+    public Area2D DamageHitbox { get; private set; } = null!;
+
+    public override void _Ready()
+    {
+        if (PlayerData.PlayerInstance != this) PlayerData.PlayerInstance = this;
+
+        DamageHitbox = GetNode<Area2D>("DamageHitbox");
+        ArgumentNullException.ThrowIfNull(DamageHitbox);
+    }
 
     public override void _UnhandledInput(InputEvent input)
     {
@@ -55,6 +66,8 @@ public partial class Player : CharacterBody2D
         if (_playerRotationControllerByMouse) RotatePlayerByMouse();
         else RotatePlayerByJoystick();
     }
+
+    public void TakeDamage(int damage) => PlayerData.ReduceHealth(damage);
 
     private void RotatePlayerByJoystick()
     {
