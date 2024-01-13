@@ -402,6 +402,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.idea
 
 ##
 ## Visual studio for Mac
@@ -484,3 +485,4 @@ $RECYCLE.BIN/
 
 # Godot 4+ specific ignores
 .godot/
+
