@@ -6,10 +6,12 @@
 * [Godot 4.2.x](https://godotengine.org/download) - take one with .Net support
 
 # Project structure
-* `src/` - Source files
-* `src/Gamejam/scenes` - Scenes and scripts for them
-* `src/Gamejam/resources` - Resources (audio, textures)
-* `src/Gamejam/code` - Common C# code, not associated with concrete scene
+* `scenes` - Scenes and scripts for them
+  * `scenes/entities` - Player and enemies
+  * `scenes/props` - Static objects
+  * `scenes/levels` - World 
+* `resources` - Resources (audio, textures)
+* `code` - Common C# code, not associated with concrete scene
 
 # How to...
 
