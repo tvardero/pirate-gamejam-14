@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmjvpb4ac700"]
+[gd_scene load_steps=4 format=3 uid="uid://bmjvpb4ac700"]
 
 [ext_resource type="Script" path="res://scenes/levels/EntryLevel.cs" id="1_dq2kb"]
 [ext_resource type="PackedScene" uid="uid://0lm2sybtqr4k" path="res://scenes/entities/Player.tscn" id="2_0phpg"]
-[ext_resource type="Texture2D" uid="uid://wp2aywjhthsq" path="res://icon.svg" id="2_sv2qg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e4vl"]
-size = Vector2(128, 128)
+[ext_resource type="PackedScene" uid="uid://bd33bwbqwsi3k" path="res://scenes/props/Box.tscn" id="3_y63jd"]
 
 [node name="EntryLevel" type="Node2D"]
 script = ExtResource("1_dq2kb")
@@ -15,13 +12,4 @@ SpawnPlayerAtGameStart = true
 [node name="PlayerSpawn_0" type="Node2D" parent="."]
 position = Vector2(267, 171)
 
-[node name="Box" type="StaticBody2D" parent="."]
-position = Vector2(682, 271)
-rotation = 0.71733
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Box"]
-texture = ExtResource("2_sv2qg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
-shape = SubResource("RectangleShape2D_6e4vl")
+[node name="Box" parent="." instance=ExtResource("3_y63jd")]
