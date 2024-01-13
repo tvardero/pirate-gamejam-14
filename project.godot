@@ -90,6 +90,12 @@ secondary_action={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="solid_object"
+2d_physics/layer_2="damage"
+2d_physics/layer_3="interaction"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
