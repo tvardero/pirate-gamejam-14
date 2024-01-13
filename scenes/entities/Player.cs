@@ -8,8 +8,13 @@ public partial class Player : CharacterBody2D, IKillable
 {
     private bool _playerRotationControllerByMouse;
     private Vector2 _inputVelocityDirection;
+    private float _sprintStrength;
 
+    [Export]
     private float PlayerWalkingSpeed { get; set; } = 400;
+
+    [Export]
+    private float PlayerSprintingSpeed { get; set; } = 800;
 
     public Area2D DamageHitbox { get; private set; } = null!;
 
@@ -43,6 +48,30 @@ public partial class Player : CharacterBody2D, IKillable
             inputIsHandled = true;
         }
 
+        else if (input.IsAction(InputActionNames.Sprint))
+        {
+            _sprintStrength = input.GetActionStrength(InputActionNames.Sprint);
+            inputIsHandled = true;
+        }
+
+        else if (input.IsAction(InputActionNames.Attack))
+        {
+            // TODO
+            inputIsHandled = true;
+        }
+
+        else if (input.IsAction(InputActionNames.PrimaryAction))
+        {
+            // TODO
+            inputIsHandled = true;
+        }
+
+        else if (input.IsAction(InputActionNames.SecondaryAction))
+        {
+            // TODO
+            inputIsHandled = true;
+        }
+
         // mark input as handled so other scenes dont waste computing time on handling it again
         if (inputIsHandled) GetTree().Root.SetInputAsHandled();
 
@@ -54,17 +83,28 @@ public partial class Player : CharacterBody2D, IKillable
                 || input.IsAction(InputActionNames.MoveUp)
                 || input.IsAction(InputActionNames.MoveLeft)
                 || input.IsAction(InputActionNames.MoveRight);
-        } 
+        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
         MoveAndSlide();
 
-        Velocity = _inputVelocityDirection * PlayerWalkingSpeed;
-        
-        if (_playerRotationControllerByMouse) RotatePlayerByMouse();
-        else RotatePlayerByJoystick();
+        Velocity = CalculateVelocity();
+
+        if (_playerRotationControllerByMouse)
+            RotatePlayerByMouse();
+        else
+            RotatePlayerByJoystick();
+
+        return;
+
+        Vector2 CalculateVelocity()
+        {
+            if (_sprintStrength <= 0) return _inputVelocityDirection * PlayerWalkingSpeed;
+
+            return _inputVelocityDirection.Normalized() * (PlayerWalkingSpeed + (PlayerSprintingSpeed - PlayerWalkingSpeed) * _sprintStrength);
+        }
     }
 
     public void TakeDamage(int damage) => PlayerData.ReduceHealth(damage);
