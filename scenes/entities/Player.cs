@@ -128,7 +128,7 @@ public partial class Player : CharacterBody2D, IKillable
     private void RotatePlayerByMouse()
     {
         var playerPosOnScreen = GetGlobalTransformWithCanvas().Origin;
-        var mousePosOnScreen = GetGlobalMousePosition();
+        var mousePosOnScreen = GetViewport().GetMousePosition();
         var cameraVector = mousePosOnScreen - playerPosOnScreen;
 
         Rotation = -cameraVector.AngleTo(Vector2.Up);
