@@ -59,19 +59,19 @@ public partial class Player : CharacterBody2D, IKillable
             inputIsHandled = true;
         }
 
-        else if (input.IsAction(InputActionNames.Attack))
+        else if (input.IsActionPressed(InputActionNames.Attack))
         {
             // TODO
             inputIsHandled = true;
         }
 
-        else if (input.IsAction(InputActionNames.PrimaryAction))
+        else if (input.IsActionPressed(InputActionNames.PrimaryAction))
         {
             TryInteract(InputActionNames.PrimaryAction);
             inputIsHandled = true;
         }
 
-        else if (input.IsAction(InputActionNames.SecondaryAction))
+        else if (input.IsActionPressed(InputActionNames.SecondaryAction))
         {
             TryInteract(InputActionNames.SecondaryAction);
             inputIsHandled = true;
@@ -136,12 +136,14 @@ public partial class Player : CharacterBody2D, IKillable
 
     private void TryInteract(string method)
     {
-        _interactRay.ForceRaycastUpdate();
-        
         var collision = _interactRay.GetCollider();
-        if (collision is IInteractable interactable && interactable.AvailableActionMethods.Contains(method))
+        if (collision is Area2D area2D)
         {
-            interactable.Interact(this, method);
+            var areaParent = area2D.GetParent();
+            if (areaParent is IInteractable interactable && interactable.AvailableActionMethods.Contains(method))
+            {
+                interactable.Interact(this, method);
+            }
         }
     }
 }

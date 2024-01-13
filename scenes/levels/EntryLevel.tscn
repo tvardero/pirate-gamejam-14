@@ -13,3 +13,5 @@ SpawnPlayerAtGameStart = true
 position = Vector2(267, 171)
 
 [node name="Box" parent="." instance=ExtResource("3_y63jd")]
+position = Vector2(702, 339)
+rotation = 0.537904
