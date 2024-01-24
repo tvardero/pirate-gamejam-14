@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class Box : StaticBody2D, IInteractable, IKillable
+public partial class Box : StaticBody2D, IInteractable
 {
     private Area2D _hitbox = null!;
 
@@ -31,6 +31,4 @@ public partial class Box : StaticBody2D, IInteractable, IKillable
                 break; 
         }
     }
-
-    public void TakeDamage(int damage) => QueueFree();
 }

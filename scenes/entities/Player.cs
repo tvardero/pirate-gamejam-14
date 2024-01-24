@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 /// Player character logic.
 /// </summary>
-public partial class Player : CharacterBody2D, IKillable
+public partial class Player : CharacterBody2D
 {
     private bool _playerRotationControllerByMouse;
     private Vector2 _inputVelocityDirection;
@@ -22,8 +22,6 @@ public partial class Player : CharacterBody2D, IKillable
 
     public override void _Ready()
     {
-        if (PlayerData.PlayerInstance != this) PlayerData.PlayerInstance = this;
-
         DamageHitbox = GetNode<Area2D>("DamageHitbox");
         ArgumentNullException.ThrowIfNull(DamageHitbox);
 
@@ -111,8 +109,6 @@ public partial class Player : CharacterBody2D, IKillable
             return _inputVelocityDirection.Normalized() * (PlayerWalkingSpeed + (PlayerSprintingSpeed - PlayerWalkingSpeed) * _sprintStrength);
         }
     }
-
-    public void TakeDamage(int damage) => PlayerData.ReduceHealth(damage);
 
     private void RotatePlayerByJoystick()
     {
