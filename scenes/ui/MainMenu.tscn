@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqassst3dxo01"]
+
+[ext_resource type="Texture2D" uid="uid://dx7pvbancub55" path="res://resources/background/main_menu.png" id="1_3xf6b"]
+[ext_resource type="Script" path="res://scenes/ui/MainMenu.cs" id="1_aqcx4"]
+[ext_resource type="PackedScene" uid="uid://n4ofpyimax4d" path="res://scenes/levels/Tutorial001.tscn" id="2_bnqrq"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aqcx4")
+LevelsToSelect = [ExtResource("2_bnqrq")]
+LevelNames = PackedStringArray("Tutorial 1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3xf6b")
+
+[node name="Container" type="Control" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" type="VBoxContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -68.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="PlayButton" type="Button" parent="Container/MainMenu"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../SelectLevelButton")
+text = "PLAY"
+
+[node name="SelectLevelButton" type="Button" parent="Container/MainMenu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../OptionsButton")
+text = "SELECT LEVEL"
+
+[node name="OptionsButton" type="Button" parent="Container/MainMenu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../SelectLevelButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+text = "OPTIONS"
+
+[node name="ExitButton" type="Button" parent="Container/MainMenu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../OptionsButton")
+text = "EXIT"
+
+[node name="LevelSelectMenu" type="VBoxContainer" parent="Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="BackToMainMenuButton" type="Button" parent="Container/LevelSelectMenu"]
+layout_mode = 2
+text = "BACK"
