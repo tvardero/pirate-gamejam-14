@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="Gamejam"
-run/main_scene="res://scenes/levels/Tutorial001.tscn"
+run/main_scene="res://scenes/ui/SplashGameLoader.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
-
-[display]
-
-window/stretch/mode="canvas_items"
 
 [dotnet]
 
