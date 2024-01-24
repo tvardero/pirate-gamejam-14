@@ -3,40 +3,36 @@ using Godot;
 
 public abstract partial class LevelBase : Node2D
 {
-    [Export]
-    private PackedScene PlayerScene { get; set; } = null!;
-    
-    [Export]
-    private bool SpawnPlayerAtGameStart { get; set; }
-    
-    [Export]
-    private int SpawnPointAtGameStart { get; set; }
-    
-    [Export]
-    private float PlayerRotationAtGameStartDegrees { get; set; }
+    private static readonly PackedScene _playerPacked = GD.Load<PackedScene>("res://scenes/entities/Player.tscn");
+
+    [Export] private bool SpawnPlayer { get; set; }
+
+    [Export] private int SpawnPointIndex { get; set; }
 
     public override void _Ready()
     {
-        ArgumentNullException.ThrowIfNull(PlayerScene); // <-- dont forget to set player scene in the editor
-        
-        if (SpawnPlayerAtGameStart) SpawnPlayerAt(SpawnPointAtGameStart, MathF.PI * PlayerRotationAtGameStartDegrees / 180);
+        if (SpawnPlayer) SpawnPlayerAt(SpawnPointIndex);
     }
 
-    protected void SpawnPlayerAt(int playerSpawnPointIndex, float playerRotation)
+    public void SpawnPlayerAt(int playerSpawnPointIndex, float playerRotation = 0)
     {
         var spawnPoint = GetNodeOrNull<Node2D>($"PlayerSpawn_{playerSpawnPointIndex}");
-        if (spawnPoint == null) throw new ArgumentException($"Player spawn point #{playerSpawnPointIndex} was not found", nameof(playerSpawnPointIndex));
+        if (spawnPoint == null)
+            throw new ArgumentException($"Player spawn point #{playerSpawnPointIndex} was not found",
+                nameof(playerSpawnPointIndex));
 
-        var playerInstance = PlayerScene.Instantiate<Player>();
+        var playerInstance = _playerPacked.Instantiate<Player>();
         playerInstance.Position = spawnPoint.Position;
         playerInstance.Rotation = playerRotation;
-        
+        playerInstance.Name = "Player";
+
         AddChild(playerInstance);
     }
 
-    protected void TransitionToScene(LevelBase nextScene, int playerSpawnPointIndex)
+    public void TransitToScene(LevelBase nextScene, int playerSpawnPointIndex)
     {
-        var playerRotation = PlayerData.PlayerInstance?.Rotation ?? 0;
-        nextScene.SpawnPlayerAt(playerSpawnPointIndex, playerRotation);
+        var player = GetNodeOrNull<Player>("Player");
+        var rotation = player?.Rotation ?? 0;
+        nextScene.SpawnPlayerAt(playerSpawnPointIndex, rotation);
     }
 }
