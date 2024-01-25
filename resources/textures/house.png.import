@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://54lcuikwhn0"
-path="res://.godot/imported/wheat.png-b0fd42fc6fb3500257ce01cde8fb194c.ctex"
+uid="uid://b17x11jna310f"
+path="res://.godot/imported/house.png-0c82d18363edc7622d42460a8ef09718.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/tileset/wheat.png"
-dest_files=["res://.godot/imported/wheat.png-b0fd42fc6fb3500257ce01cde8fb194c.ctex"]
+source_file="res://resources/textures/house.png"
+dest_files=["res://.godot/imported/house.png-0c82d18363edc7622d42460a8ef09718.ctex"]
 
 [params]
 
