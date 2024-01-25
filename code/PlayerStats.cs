@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 public class PlayerStats
 {
     public const string SaveFileName = "save.json";
-    
+
     public string? LastPlayedLevel { get; set; }
     public List<string> UnlockedLevels { get; init; } = new();
 
@@ -26,8 +26,11 @@ public class PlayerStats
     public async Task SaveAsync()
     {
         var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        var path = Path.Join(appData, $"ta.{GameData.GameName}", SaveFileName);
 
+        var dir = Path.Join(appData, $"ta.{GameData.GameName}");
+        if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+        var path = Path.Join(dir, SaveFileName);
         await using var fw = File.Create(path);
         await JsonSerializer.SerializeAsync(fw, this);
     }

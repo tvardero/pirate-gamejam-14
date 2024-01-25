@@ -7,8 +7,8 @@ public class GameOptions
 {
     public const string SaveFileName = "options.json";
 
-    public float MusicVolume { get; set; } = 100;
-    public float EffectVolume { get; set; } = 100;
+    public double MusicVolume { get; set; } = 1;
+    public double EffectVolume { get; set; } = 1;
 
     public static async Task<GameOptions> LoadAsync()
     {
@@ -25,8 +25,11 @@ public class GameOptions
     public async Task SaveAsync()
     {
         var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        var path = Path.Join(appData, $"ta.{GameData.GameName}", SaveFileName);
 
+        var dir = Path.Join(appData, $"ta.{GameData.GameName}");
+        if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+        var path = Path.Join(dir, SaveFileName);
         await using var fw = File.Create(path);
         await JsonSerializer.SerializeAsync(fw, this);
     }
