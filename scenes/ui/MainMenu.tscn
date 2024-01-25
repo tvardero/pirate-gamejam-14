@@ -3,9 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://dx7pvbancub55" path="res://resources/background/main_menu.png" id="1_3xf6b"]
 [ext_resource type="Script" path="res://scenes/ui/MainMenu.cs" id="1_aqcx4"]
 [ext_resource type="PackedScene" uid="uid://n4ofpyimax4d" path="res://scenes/levels/Tutorial001.tscn" id="2_bnqrq"]
-[ext_resource type="PackedScene" uid="uid://bposa3spynyuy" path="res://scenes/ui/SliderOption.tscn" id="4_tv7xq"]
+[ext_resource type="PackedScene" uid="uid://d0whsl1cw6ad3" path="res://scenes/ui/OptionsMenu.tscn" id="4_kx3c2"]
 
 [node name="MainMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,67 +87,13 @@ theme_override_constants/separation = 5
 layout_mode = 2
 text = "BACK"
 
-[node name="OptionsMenu" type="VBoxContainer" parent="Container"]
+[node name="OptionsMenu" parent="Container" instance=ExtResource("4_kx3c2")]
 visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 1.0
 anchor_bottom = 0.5
-grow_horizontal = 2
+offset_top = -189.0
+offset_bottom = 189.0
 grow_vertical = 2
-
-[node name="BackToMainMenuButton" type="Button" parent="Container/OptionsMenu"]
-layout_mode = 2
-text = "BACK"
-
-[node name="Music" parent="Container/OptionsMenu" instance=ExtResource("4_tv7xq")]
-layout_mode = 2
-OptionName = "Music"
-MaxValue = 1.0
-CurrentValue = 1.0
-IsPercent = true
-
-[node name="Sound" parent="Container/OptionsMenu" instance=ExtResource("4_tv7xq")]
-layout_mode = 2
-OptionName = "Effects volume"
-MaxValue = 1.0
-CurrentValue = 1.0
-IsPercent = true
-
-[node name="ResetButton" type="Button" parent="Container/OptionsMenu"]
-layout_mode = 2
-text = "RESET PLAYER PROGRESS"
-
-[node name="Credits" type="Control" parent="Container/OptionsMenu"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="Container/OptionsMenu/Credits"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Container/OptionsMenu/Credits"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "CREDITS
-
-Vardo Ternos - code
-Magikarp - story
-Lynx - levels
-Filip - arts
-RedOwl - sound
-"
-horizontal_alignment = 1
+ShowReset = true

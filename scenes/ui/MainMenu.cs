@@ -3,6 +3,10 @@ using System;
 
 public partial class MainMenu : Control
 {
+    private VBoxContainer _mainMenu = null!;
+    private VBoxContainer _selectMenu = null!;
+    private OptionsMenu _optionsMenu = null!;
+
     [Export]
     public PackedScene[] LevelsToSelect { get; set; } = Array.Empty<PackedScene>();
 
@@ -11,19 +15,32 @@ public partial class MainMenu : Control
 
     public override void _Ready()
     {
-        var mainMenu = GetNode<VBoxContainer>("Container/MainMenu");
-        mainMenu.Show();
-        PrepareMainMenu(mainMenu);
+        GetTree().Paused = false;
 
-        var selectMenu = GetNode<VBoxContainer>("Container/LevelSelectMenu");
-        selectMenu.Hide();
-        PrepareLevelSelectionMenu(selectMenu);
+        _mainMenu = GetNode<VBoxContainer>("Container/MainMenu");
+        _mainMenu.Show();
+        PrepareMainMenu(_mainMenu);
 
-        var optionsMenu = GetNode<VBoxContainer>("Container/OptionsMenu");
-        optionsMenu.Hide();
-        PrepareOptionsMenu(optionsMenu);
+        _selectMenu = GetNode<VBoxContainer>("Container/LevelSelectMenu");
+        _selectMenu.Hide();
+        PrepareLevelSelectionMenu(_selectMenu);
+
+        _optionsMenu = GetNode<OptionsMenu>("Container/OptionsMenu");
+        _optionsMenu.Hide();
+        _optionsMenu.Closed += CloseOptionsMenu;
 
         GetNode<Button>("Container/MainMenu/PlayButton").GrabFocus();
+    }
+
+    public override void _UnhandledInput(InputEvent input)
+    {
+        if (input.IsActionPressed("ui_cancel"))
+        {
+            if (_selectMenu.Visible) CloseSelectMenu();
+            else if (_optionsMenu.Visible) CloseOptionsMenu();
+        }
+
+        GetTree().Root.SetInputAsHandled();
     }
 
     private void PrepareMainMenu(Control mainMenu)
@@ -57,15 +74,10 @@ public partial class MainMenu : Control
         exit.Pressed += ExitGame;
     }
 
-    private void PrepareLevelSelectionMenu(Control container)
+    private void PrepareLevelSelectionMenu(Control selectMenu)
     {
-        var backButton = container.GetNode<Button>("BackToMainMenuButton");
-        backButton.Pressed += () =>
-        {
-            GetNode<VBoxContainer>("Container/MainMenu").Show();
-            GetNode<VBoxContainer>("Container/LevelSelectMenu").Hide();
-            GetNode<Button>("Container/MainMenu/SelectLevelButton").GrabFocus();
-        };
+        var backButton = selectMenu.GetNode<Button>("BackToMainMenuButton");
+        backButton.Pressed += CloseSelectMenu;
 
         if (LevelsToSelect.Length != LevelNames.Length) throw new ArgumentException("Invalid configuration");
         for (var i = 0; i < LevelsToSelect.Length; i++)
@@ -74,40 +86,34 @@ public partial class MainMenu : Control
             var packed = LevelsToSelect[i];
             var button = new Button { Text = name };
             button.Pressed += () => LaunchScene(packed);
-            container.AddChild(button);
+            selectMenu.AddChild(button);
         }
     }
 
-    private void PrepareOptionsMenu(Control container)
+    private void CloseSelectMenu()
     {
-        var backButton = container.GetNode<Button>("BackToMainMenuButton");
-        backButton.Pressed += BackToMainMenu;
-
-        var music = container.GetNode<SliderOption>("Music");
-        music.ValueChanged += val => GameData.GameOptions.MusicVolume = val;
-
-        var sound = container.GetNode<SliderOption>("Sound");
-        sound.ValueChanged += val => GameData.GameOptions.EffectVolume = val;
-
-        var reset = container.GetNode<Button>("ResetButton");
-        reset.Pressed += () =>
-        {
-            GameData.ResetPlayerStats();
-            BackToMainMenu();
-        };
-
-        void BackToMainMenu()
-        {
-            GetNode<VBoxContainer>("Container/MainMenu").Show();
-            GetNode<VBoxContainer>("Container/OptionsMenu").Hide();
-            GetNode<Button>("Container/MainMenu/OptionsButton").GrabFocus();
-        }
+        _mainMenu.Show();
+        _selectMenu.Hide();
+        _mainMenu.GetNode<Button>("SelectLevelButton").GrabFocus();
     }
 
-    private void LaunchScene(PackedScene scene)
+    private void CloseOptionsMenu()
     {
-        GameData.PlayerStats.LastPlayedLevel = scene.ResourcePath;
-        GetTree().ChangeSceneToPacked(scene);
+        _mainMenu.Show();
+        _optionsMenu.Hide();
+        GetNode<Button>("Container/MainMenu/OptionsButton").GrabFocus();
+    }
+
+    private void LaunchScene(PackedScene levelPacked)
+    {
+        var gamePacked = GD.Load<PackedScene>("res://scenes/Game.tscn");
+        var game = gamePacked.Instantiate<Game>();
+        game.ReplaceLevelWith(levelPacked.Instantiate<LevelBase>());
+
+        var mainMenu = GetTree().Root.GetChild(0);
+        mainMenu.QueueFree();
+
+        GetTree().Root.AddChild(game);
     }
 
     private async void ExitGame()

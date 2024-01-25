@@ -5,10 +5,42 @@ using System.Threading.Tasks;
 
 public class GameOptions
 {
+    private double _musicVolume = 1;
+    private double _effectVolume = 1;
+    private bool _showFps = true;
     public const string SaveFileName = "options.json";
 
-    public double MusicVolume { get; set; } = 1;
-    public double EffectVolume { get; set; } = 1;
+    public double MusicVolume
+    {
+        get => _musicVolume;
+        set
+        {
+            _musicVolume = value;
+            Updated?.Invoke();
+        }
+    }
+
+    public double EffectVolume
+    {
+        get => _effectVolume;
+        set
+        {
+            _effectVolume = value;
+            Updated?.Invoke();
+        }
+    }
+
+    public bool ShowFps
+    {
+        get => _showFps;
+        set
+        {
+            _showFps = value;
+            Updated?.Invoke();
+        }
+    }
+
+    public event Action? Updated;
 
     public static async Task<GameOptions> LoadAsync()
     {

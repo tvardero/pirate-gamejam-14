@@ -15,4 +15,5 @@ public static class InputActionNames
     public const string Attack = "attack";
     public const string PrimaryAction = "primary_action";
     public const string SecondaryAction = "secondary_action";
+    public const string PauseMenu = "pause";
 }

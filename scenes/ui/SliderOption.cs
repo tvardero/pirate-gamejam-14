@@ -83,7 +83,11 @@ public partial class SliderOption : Control
         _optionNameLabel.Text = _optionName;
 
         _slider = GetNode<HSlider>("HBoxContainer/HSlider");
-        _slider.ValueChanged += UpdateManualInputText;
+        _slider.ValueChanged += newVal =>
+        {
+            CurrentValue = newVal;
+            UpdateManualInputText(newVal);
+        };
         _slider.MinValue = MinValue;
         _slider.MaxValue = MaxValue;
         _slider.Value = CurrentValue;

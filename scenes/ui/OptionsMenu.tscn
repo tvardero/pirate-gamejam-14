@@ -1,0 +1,101 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0whsl1cw6ad3"]
+
+[ext_resource type="Script" path="res://scenes/ui/OptionsMenu.cs" id="1_3g0of"]
+[ext_resource type="PackedScene" uid="uid://bposa3spynyuy" path="res://scenes/ui/SliderOption.tscn" id="1_6a1b4"]
+
+[node name="OptionsMenu" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 378.0
+grow_horizontal = 2
+script = ExtResource("1_3g0of")
+
+[node name="BackToMainMenuButton" type="Button" parent="."]
+layout_mode = 2
+text = "BACK"
+
+[node name="Music" parent="." instance=ExtResource("1_6a1b4")]
+layout_mode = 2
+OptionName = "Music"
+MaxValue = 1.0
+CurrentValue = 1.0
+IsPercent = true
+
+[node name="Sound" parent="." instance=ExtResource("1_6a1b4")]
+layout_mode = 2
+OptionName = "Effects volume"
+MaxValue = 1.0
+CurrentValue = 1.0
+IsPercent = true
+
+[node name="ShowFps" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ShowFps"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShowFps"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ShowFps/HBoxContainer"]
+layout_mode = 2
+text = "Show FPS"
+
+[node name="Control" type="Control" parent="ShowFps/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="ShowFps/HBoxContainer"]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="."]
+layout_mode = 2
+text = "RESET PLAYER PROGRESS"
+
+[node name="Credits" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CREDITS
+
+Vardo Ternos - code
+Magikarp - story
+Lynx - levels
+Filip - arts
+RedOwl - sound
+"
+horizontal_alignment = 1
