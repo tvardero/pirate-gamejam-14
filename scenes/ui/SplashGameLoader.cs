@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 public partial class SplashGameLoader : Control
 {
     private TextureRect _splashImage = null!;
+
+    [Export]
+    public PackedScene SceneToOpenOnLoad { get; set; } = GD.Load<PackedScene>("res://scenes/ui/MainMenu.tscn");
     
     public override void _Ready()
     {
@@ -19,12 +22,6 @@ public partial class SplashGameLoader : Control
     private async Task LoadData()
     {
         await GameData.LoadAsync();
-        OpenMenu();
-    }
-    
-    private void OpenMenu()
-    {
-        var menuPacked = GD.Load<PackedScene>("res://scenes/ui/MainMenu.tscn");
-        GetTree().ChangeSceneToPacked(menuPacked);
+        GetTree().ChangeSceneToPacked(SceneToOpenOnLoad);
     }
 }
