@@ -3,35 +3,71 @@ using System;
 
 public partial class MainMenu : Control
 {
-    [Export] public PackedScene[] LevelsToSelect { get; set; } = Array.Empty<PackedScene>();
+    [Export]
+    public PackedScene[] LevelsToSelect { get; set; } = Array.Empty<PackedScene>();
 
-    [Export] public string[] LevelNames { get; set; } = Array.Empty<string>();
+    [Export]
+    public string[] LevelNames { get; set; } = Array.Empty<string>();
 
     public override void _Ready()
     {
-        PrepareLevelSelectionMenu(GetNode<VBoxContainer>("Container/LevelSelectMenu"));
+        var mainMenu = GetNode<VBoxContainer>("Container/MainMenu");
+        mainMenu.Show();
+        PrepareMainMenu(mainMenu);
 
-        var play = GetNode<Button>("Container/MainMenu/PlayButton");
-        play.GrabFocus();
-        play.Pressed += LaunchLastPlayed;
+        var selectMenu = GetNode<VBoxContainer>("Container/LevelSelectMenu");
+        selectMenu.Hide();
+        PrepareLevelSelectionMenu(selectMenu);
+
+        var optionsMenu = GetNode<VBoxContainer>("Container/OptionsMenu");
+        optionsMenu.Hide();
+        PrepareOptionsMenu(optionsMenu);
+
+        GetNode<Button>("Container/MainMenu/PlayButton").GrabFocus();
+    }
+
+    private void PrepareMainMenu(Control mainMenu)
+    {
+        var play = mainMenu.GetNode<Button>("PlayButton");
+        play.Pressed += () =>
+        {
+            var levelPath = GameData.PlayerStats.LastPlayedLevel ?? "res://scenes/levels/Tutorial001.tscn";
+            var levelPacked = GD.Load<PackedScene>(levelPath);
+            LaunchScene(levelPacked);
+        };
         if (GameData.PlayerStats.LastPlayedLevel != null) play.Text = "Continue";
 
-        var select = GetNode<Button>("Container/MainMenu/SelectLevelButton");
-        select.Pressed += OpenSelectLevelMenu;
+        var select = mainMenu.GetNode<Button>("SelectLevelButton");
+        select.Pressed += () =>
+        {
+            GetNode<VBoxContainer>("Container/MainMenu").Hide();
+            GetNode<VBoxContainer>("Container/LevelSelectMenu").Show();
+            GetNode<Button>("Container/LevelSelectMenu/BackToMainMenuButton").GrabFocus();
+        };
 
-        var options = GetNode<Button>("Container/MainMenu/OptionsButton");
-        options.Pressed += OpenOptionsMenu;
+        var options = mainMenu.GetNode<Button>("OptionsButton");
+        options.Pressed += () =>
+        {
+            GetNode<VBoxContainer>("Container/MainMenu").Hide();
+            GetNode<VBoxContainer>("Container/OptionsMenu").Show();
+            GetNode<Button>("Container/OptionsMenu/BackToMainMenuButton").GrabFocus();
+        };
 
-        var exit = GetNode<Button>("Container/MainMenu/ExitButton");
-        exit.Pressed += () => GetTree().Quit();
+        var exit = mainMenu.GetNode<Button>("ExitButton");
+        exit.Pressed += ExitGame;
     }
 
     private void PrepareLevelSelectionMenu(Control container)
     {
         var backButton = container.GetNode<Button>("BackToMainMenuButton");
-        backButton.Pressed += CloseSelectLevelMenu;
-        
-        if (LevelsToSelect.Length != LevelNames.Length) throw new ArgumentException("Invalid configuration"); 
+        backButton.Pressed += () =>
+        {
+            GetNode<VBoxContainer>("Container/MainMenu").Show();
+            GetNode<VBoxContainer>("Container/LevelSelectMenu").Hide();
+            GetNode<Button>("Container/MainMenu/SelectLevelButton").GrabFocus();
+        };
+
+        if (LevelsToSelect.Length != LevelNames.Length) throw new ArgumentException("Invalid configuration");
         for (var i = 0; i < LevelsToSelect.Length; i++)
         {
             var name = LevelNames[i];
@@ -42,11 +78,30 @@ public partial class MainMenu : Control
         }
     }
 
-    private void LaunchLastPlayed()
+    private void PrepareOptionsMenu(Control container)
     {
-        var levelPacked = GD.Load<PackedScene>(GameData.PlayerStats.LastPlayedLevel 
-                                               ?? "res://scenes/levels/Tutorial001.tscn");
-        LaunchScene(levelPacked);
+        var backButton = container.GetNode<Button>("BackToMainMenuButton");
+        backButton.Pressed += BackToMainMenu;
+
+        var music = container.GetNode<SliderOption>("Music");
+        music.ValueChanged += val => GameData.GameOptions.MusicVolume = val;
+
+        var sound = container.GetNode<SliderOption>("Sound");
+        sound.ValueChanged += val => GameData.GameOptions.EffectVolume = val;
+
+        var reset = container.GetNode<Button>("ResetButton");
+        reset.Pressed += () =>
+        {
+            GameData.ResetPlayerStats();
+            BackToMainMenu();
+        };
+
+        void BackToMainMenu()
+        {
+            GetNode<VBoxContainer>("Container/MainMenu").Show();
+            GetNode<VBoxContainer>("Container/OptionsMenu").Hide();
+            GetNode<Button>("Container/MainMenu/OptionsButton").GrabFocus();
+        }
     }
 
     private void LaunchScene(PackedScene scene)
@@ -55,29 +110,15 @@ public partial class MainMenu : Control
         GetTree().ChangeSceneToPacked(scene);
     }
 
-    private void OpenSelectLevelMenu()
+    private async void ExitGame()
     {
-        GetNode<VBoxContainer>("Container/MainMenu").Hide();
-        GetNode<VBoxContainer>("Container/LevelSelectMenu").Show();
-    }
-
-    private void CloseSelectLevelMenu()
-    {
-        GetNode<VBoxContainer>("Container/MainMenu").Show();
-        GetNode<VBoxContainer>("Container/LevelSelectMenu").Hide();
-    }
-
-    private void OpenOptionsMenu()
-    {
-        throw new NotImplementedException();
-        
-        GetNode<VBoxContainer>("Container/MainMenu").Hide();
-    }
-
-    private void CloseOptionsMenu()
-    {
-        throw new NotImplementedException();
-        
-        GetNode<VBoxContainer>("Container/MainMenu").Show();
+        try
+        {
+            await GameData.SaveAsync();
+        }
+        finally
+        {
+            GetTree().Quit();
+        }
     }
 }

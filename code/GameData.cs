@@ -19,4 +19,9 @@ public static class GameData
         await GameOptions.SaveAsync();
         await PlayerStats.SaveAsync();
     }
+
+    public static void ResetPlayerStats()
+    {
+        PlayerStats = new();
+    }
 }
