@@ -4,10 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bposa3spynyuy" path="res://scenes/ui/SliderOption.tscn" id="1_6a1b4"]
 
 [node name="OptionsMenu" type="VBoxContainer"]
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 378.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_3g0of")
 
 [node name="BackToMainMenuButton" type="Button" parent="."]
@@ -68,7 +69,7 @@ layout_mode = 2
 text = "RESET PLAYER PROGRESS"
 
 [node name="Credits" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 275)
 layout_mode = 2
 
 [node name="Panel" type="Panel" parent="Credits"]
@@ -90,12 +91,15 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "CREDITS
+text = "Credits
 
-Vardo Ternos - code
-Magikarp - story
-Lynx - levels
-Filip - arts
-RedOwl - sound
-"
+@tvardero - Programming
+@magikarpsplash. - World Building
+@lynxoflight - Level Design 
+@honkulus - Art
+@lilbdog - Sound Design
+
+Created for the Pirate Software Game Jam 14
+Development Window:  January 12th 2024 to January 27th 2024"
 horizontal_alignment = 1
+autowrap_mode = 2

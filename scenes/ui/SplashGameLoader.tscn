@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwwpst0gp4h6i"]
 
 [ext_resource type="Script" path="res://scenes/ui/SplashGameLoader.cs" id="1_acyb2"]
-[ext_resource type="Texture2D" uid="uid://kedong6o3niy" path="res://resources/background/splash.png" id="1_oaoi4"]
+[ext_resource type="Texture2D" uid="uid://bixjdhk8id55h" path="res://resources/ui/splash.png" id="1_oaoi4"]
 
 [node name="SplashGameLoader" type="Control"]
 layout_mode = 3

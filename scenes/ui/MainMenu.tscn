@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cqassst3dxo01"]
 
-[ext_resource type="Texture2D" uid="uid://dx7pvbancub55" path="res://resources/background/main_menu.png" id="1_3xf6b"]
 [ext_resource type="Script" path="res://scenes/ui/MainMenu.cs" id="1_aqcx4"]
 [ext_resource type="PackedScene" uid="uid://n4ofpyimax4d" path="res://scenes/levels/Tutorial001.tscn" id="2_bnqrq"]
+[ext_resource type="Texture2D" uid="uid://c087i8eyqgsg3" path="res://resources/ui/menuBG2.jpg" id="3_mp1r4"]
 [ext_resource type="PackedScene" uid="uid://d0whsl1cw6ad3" path="res://scenes/ui/OptionsMenu.tscn" id="4_kx3c2"]
 
 [node name="MainMenu" type="Control"]
@@ -24,7 +24,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_3xf6b")
+texture = ExtResource("3_mp1r4")
+expand_mode = 2
 
 [node name="Container" type="Control" parent="."]
 custom_minimum_size = Vector2(500, 0)
@@ -95,5 +96,4 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -189.0
 offset_bottom = 189.0
-grow_vertical = 2
 ShowReset = true
