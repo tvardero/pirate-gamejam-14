@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=59 format=3 uid="uid://b2gkpwwswrk8a"]
+[gd_resource type="TileSet" load_steps=61 format=3 uid="uid://b2gkpwwswrk8a"]
 
 [ext_resource type="Texture2D" uid="uid://672xsio2t3c6" path="res://textures/water/water0000.png" id="1_5r6wg"]
 [ext_resource type="Texture2D" uid="uid://dqabd8yxdi6m2" path="res://textures/soil.jpg" id="2_8rg0l"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dungacumtutfb" path="res://textures/reed.png" id="22_3k8uw"]
 [ext_resource type="Texture2D" uid="uid://bkaddxv1rakv8" path="res://textures/fence/fence.png" id="22_i5j71"]
 [ext_resource type="Texture2D" uid="uid://chnqvxhk0agk" path="res://textures/grass_Border/botLeftCorner.png" id="23_240jw"]
+[ext_resource type="Texture2D" uid="uid://cdljb62a7i4hr" path="res://textures/barn.png" id="23_g2o7m"]
 [ext_resource type="Texture2D" uid="uid://hlmyci5ucaxp" path="res://textures/grass_Border/botRightCorner.png" id="24_ey3iu"]
 [ext_resource type="Texture2D" uid="uid://750xe2kjcevs" path="res://textures/grass_Border/down.png" id="25_w3mwt"]
 [ext_resource type="Texture2D" uid="uid://dilondywmyinc" path="res://textures/grass_Border/horizontal.png" id="26_iwvrc"]
@@ -140,6 +141,13 @@ texture = ExtResource("22_i5j71")
 texture_region_size = Vector2i(500, 500)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1reo6"]
+texture = ExtResource("23_g2o7m")
+texture_region_size = Vector2i(500, 500)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e5y8w"]
 texture = ExtResource("20_7u0nr")
 texture_region_size = Vector2i(500, 500)
@@ -211,3 +219,4 @@ sources/25 = SubResource("TileSetAtlasSource_sgku5")
 sources/26 = SubResource("TileSetAtlasSource_qks7n")
 sources/27 = SubResource("TileSetAtlasSource_sjrd3")
 sources/28 = SubResource("TileSetAtlasSource_nq6dd")
+sources/29 = SubResource("TileSetAtlasSource_1reo6")
