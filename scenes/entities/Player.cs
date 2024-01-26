@@ -11,6 +11,7 @@ public partial class Player : CharacterBody2D
     private Vector2 _inputVelocityDirection;
     private float _sprintStrength;
     private RayCast2D _interactRay = null!;
+    private AnimationTree _animationTree = null!;
 
     [Export]
     private float PlayerWalkingSpeed { get; set; } = 400;
@@ -20,13 +21,15 @@ public partial class Player : CharacterBody2D
 
     public Area2D DamageHitbox { get; private set; } = null!;
 
+    public float PlayerRotation { get; set; }
+
     public override void _Ready()
     {
-        DamageHitbox = GetNode<Area2D>("DamageHitbox");
-        ArgumentNullException.ThrowIfNull(DamageHitbox);
-
         _interactRay = GetNode<RayCast2D>("InteractRayCast");
         ArgumentNullException.ThrowIfNull(_interactRay);
+
+        _animationTree = GetNode<AnimationTree>("AnimationTree");
+        ArgumentNullException.ThrowIfNull(_animationTree);
     }
 
     public override void _UnhandledInput(InputEvent input)
@@ -34,8 +37,14 @@ public partial class Player : CharacterBody2D
         var inputIsHandled = false;
 
         // change camera rotation input device
-        if (input is InputEventMouse) { _playerRotationControllerByMouse = true; }
-        else if (input is InputEventJoypadMotion or InputEventJoypadButton) { _playerRotationControllerByMouse = false; }
+        if (input is InputEventMouse)
+        {
+            _playerRotationControllerByMouse = true;
+        }
+        else if (input is InputEventJoypadMotion or InputEventJoypadButton)
+        {
+            _playerRotationControllerByMouse = false;
+        }
 
         // process inputs like motion, jumping, shooting, etc... 
         if (IsMotionAction(input))
@@ -83,9 +92,9 @@ public partial class Player : CharacterBody2D
         static bool IsMotionAction(InputEvent input)
         {
             return input.IsAction(InputActionNames.MoveDown)
-                || input.IsAction(InputActionNames.MoveUp)
-                || input.IsAction(InputActionNames.MoveLeft)
-                || input.IsAction(InputActionNames.MoveRight);
+                   || input.IsAction(InputActionNames.MoveUp)
+                   || input.IsAction(InputActionNames.MoveLeft)
+                   || input.IsAction(InputActionNames.MoveRight);
         }
     }
 
@@ -100,13 +109,16 @@ public partial class Player : CharacterBody2D
         else
             RotatePlayerByJoystick();
 
+        SetAnimationParameters();
+
         return;
 
         Vector2 CalculateVelocity()
         {
             if (_sprintStrength <= 0) return _inputVelocityDirection * PlayerWalkingSpeed;
 
-            return _inputVelocityDirection.Normalized() * (PlayerWalkingSpeed + (PlayerSprintingSpeed - PlayerWalkingSpeed) * _sprintStrength);
+            return _inputVelocityDirection.Normalized() *
+                   (PlayerWalkingSpeed + (PlayerSprintingSpeed - PlayerWalkingSpeed) * _sprintStrength);
         }
     }
 
@@ -118,7 +130,7 @@ public partial class Player : CharacterBody2D
 
         if (cameraVector.Length() < 0.35) return; // dont reset camera angle when we release left joystick
 
-        Rotation = -cameraVector.AngleTo(Vector2.Up);
+        PlayerRotation = -cameraVector.AngleTo(Vector2.Up);
     }
 
     private void RotatePlayerByMouse()
@@ -127,7 +139,24 @@ public partial class Player : CharacterBody2D
         var mousePosOnScreen = GetViewport().GetMousePosition();
         var cameraVector = mousePosOnScreen - playerPosOnScreen;
 
-        Rotation = -cameraVector.AngleTo(Vector2.Up);
+        PlayerRotation = -cameraVector.AngleTo(Vector2.Up);
+    }
+
+    private void SetAnimationParameters()
+    {
+        var walking = _inputVelocityDirection.LengthSquared() > 0.01f;
+        var water = GameData.LevelData?.BucketAmmo > 0;
+
+        _animationTree.Set("parameters/conditions/idle", !walking);
+        _animationTree.Set("parameters/conditions/walking", walking);
+        _animationTree.Set("parameters/conditions/water", water);
+        _animationTree.Set("parameters/conditions/dry", !water);
+
+        var blendPos = Vector2.Up.Rotated(PlayerRotation);
+        _animationTree.Set("parameters/idle/blend_position", blendPos);
+        _animationTree.Set("parameters/idle_water/blend_position", blendPos);
+        _animationTree.Set("parameters/walking/blend_position", blendPos);
+        _animationTree.Set("parameters/walking_water/blend_position", blendPos);
     }
 
     private void TryInteract(string method)
