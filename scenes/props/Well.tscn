@@ -7,6 +7,7 @@
 radius = 281.087
 
 [node name="Well" type="StaticBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_td4p1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -15,7 +16,7 @@ texture = ExtResource("1_48ite")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -125)
-polygon = PackedVector2Array(-219, 148, -138, 211, 4, 236, 133, 206, 210, 144, 206, 81, 130, 40, 2, 16, -128, 36, -223, 78)
+polygon = PackedVector2Array(-219, 148, -138, 211, 4, 236, 133, 206, 210, 144, 205, 17, 135, -26, 0, -58, -134, -37, -219, 11)
 
 [node name="Area2D" type="Area2D" parent="."]
 

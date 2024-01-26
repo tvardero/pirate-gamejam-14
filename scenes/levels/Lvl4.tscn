@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://blnp628jwjof8" path="res://scenes/props/Barn.tscn" id="5_5dw3d"]
 
 [node name="Lvl4" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_r8i22")
 
 [node name="TileMap" type="TileMap" parent="."]

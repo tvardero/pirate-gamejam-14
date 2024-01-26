@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="5_0u6hy"]
 
 [node name="Lvl3" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_a8lcn")
 
 [node name="TileMap" type="TileMap" parent="."]

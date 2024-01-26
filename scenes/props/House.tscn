@@ -6,11 +6,14 @@
 size = Vector2(800, 564)
 
 [node name="House" type="StaticBody2D"]
+y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -500)
 texture = ExtResource("1_lqpp5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -68)
 shape = SubResource("RectangleShape2D_ufyo0")

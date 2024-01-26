@@ -6,6 +6,7 @@
 size = Vector2(1311, 300)
 
 [node name="Barn" type="StaticBody2D"]
+y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ijyax")

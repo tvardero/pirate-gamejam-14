@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="5_w5f0a"]
 
 [node name="Tutorial test lvl" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_gnhru")
 
 [node name="TileMap" type="TileMap" parent="."]

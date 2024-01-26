@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b8vadb564w66m" path="res://resources/textures/silo.png" id="1_wemq4"]
 
 [node name="Silo" type="StaticBody2D"]
+y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -377)

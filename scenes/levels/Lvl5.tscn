@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://baag8jpf50gn3" path="res://scenes/props/Silo.tscn" id="4_vtbnx"]
 
 [node name="lvl_5" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ggf44")
 
 [node name="TileMap" type="TileMap" parent="."]
