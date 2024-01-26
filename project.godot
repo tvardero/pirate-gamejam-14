@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://resources/background/splash.png"
 boot_splash/fullsize=false
-config/icon="res://icon.svg"
+config/icon="res://resources/icon.png"
 
 [dotnet]
 
