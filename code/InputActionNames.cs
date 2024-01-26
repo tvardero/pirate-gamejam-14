@@ -13,7 +13,6 @@ public static class InputActionNames
     public const string JoystickCameraRight = "joystick_camera_right";
     public const string Sprint = "sprint";
     public const string Attack = "attack";
-    public const string PrimaryAction = "primary_action";
-    public const string SecondaryAction = "secondary_action";
-    public const string PauseMenu = "pause";
+    public const string SecondaryAction = "secondary";
+    public const string Escape = "ui_cancel";
 }

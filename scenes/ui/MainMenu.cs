@@ -35,7 +35,7 @@ public partial class MainMenu : Control
 
     public override void _UnhandledInput(InputEvent input)
     {
-        if (input.IsActionPressed("ui_cancel"))
+        if (input.IsActionPressed(InputActionNames.Escape))
         {
             if (_selectMenu.Visible) CloseSelectMenu();
             else if (_optionsMenu.Visible) CloseOptionsMenu();

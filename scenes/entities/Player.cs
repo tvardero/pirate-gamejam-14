@@ -68,19 +68,8 @@ public partial class Player : CharacterBody2D
 
         else if (input.IsActionPressed(InputActionNames.Attack))
         {
-            // TODO
-            inputIsHandled = true;
-        }
-
-        else if (input.IsActionPressed(InputActionNames.PrimaryAction))
-        {
-            TryInteract(InputActionNames.PrimaryAction);
-            inputIsHandled = true;
-        }
-
-        else if (input.IsActionPressed(InputActionNames.SecondaryAction))
-        {
-            TryInteract(InputActionNames.SecondaryAction);
+            var interacted = TryInteract();
+            if (!interacted) UseBucket();
             inputIsHandled = true;
         }
 
@@ -159,16 +148,25 @@ public partial class Player : CharacterBody2D
         _animationTree.Set("parameters/walking_water/blend_position", blendPos);
     }
 
-    private void TryInteract(string method)
+    private bool TryInteract()
     {
         var collision = _interactRay.GetCollider();
-        if (collision is Area2D area2D)
-        {
-            var areaParent = area2D.GetParent();
-            if (areaParent is IInteractable interactable && interactable.AvailableActionMethods.Contains(method))
-            {
-                interactable.Interact(this, method);
-            }
-        }
+        if (collision is not Area2D area2D) return false;
+
+        var areaParent = area2D.GetParent();
+        if (areaParent is not IInteractable interactable) return false;
+
+        interactable.Interact(this);
+        return true;
+    }
+
+    private void UseBucket()
+    {
+        if (GameData.LevelData == null) return;
+        if (GameData.LevelData.BucketAmmo <= 0) return;
+
+        throw new NotImplementedException();
+
+        GameData.LevelData.BucketAmmo--;
     }
 }

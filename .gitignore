@@ -485,4 +485,5 @@ $RECYCLE.BIN/
 
 # Godot 4+ specific ignores
 .godot/
+build/
 

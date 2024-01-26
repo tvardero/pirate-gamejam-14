@@ -24,7 +24,7 @@ public partial class PauseMenu : Control
 
     public override void _UnhandledInput(InputEvent input)
     {
-        if (input.IsActionPressed("ui_cancel"))
+        if (input.IsActionPressed(InputActionNames.Escape))
         {
             if (_menu.Visible) Closed?.Invoke();
             if (_optionsMenu.Visible) CloseOptions();

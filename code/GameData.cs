@@ -1,10 +1,9 @@
-using System;
 using System.Threading.Tasks;
 using Gamejam.code;
 
 public static class GameData
 {
-    public const string GameName = "Firespread";
+    public const string GameName = "ScorchedAcres";
     
     public static GameOptions GameOptions { get; private set; } = null!;
     public static PlayerStats PlayerStats { get; private set; } = null!;

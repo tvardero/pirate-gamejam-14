@@ -14,7 +14,7 @@ public partial class Game : Node
 
     public override void _UnhandledInput(InputEvent input)
     {
-        if (!input.IsActionPressed("ui_cancel")) return;
+        if (!input.IsActionPressed(InputActionNames.Escape)) return;
 
         TogglePauseMenu(!_pauseMenu.Visible);
         GetTree().Root.SetInputAsHandled();
