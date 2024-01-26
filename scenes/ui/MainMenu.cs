@@ -112,9 +112,7 @@ public partial class MainMenu : Control
         var game = gamePacked.Instantiate<Game>();
         game.ReplaceLevelWith(levelPacked.Instantiate<LevelBase>());
 
-        var mainMenu = GetTree().Root.GetChild(0);
-        mainMenu.QueueFree();
-
+        GetTree().Root.GetChild(0).QueueFree();
         GetTree().Root.AddChild(game);
     }
 

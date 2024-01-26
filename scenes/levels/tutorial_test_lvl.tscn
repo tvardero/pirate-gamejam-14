@@ -1,18 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://clnsio22w61n4"]
+[gd_scene load_steps=5 format=3 uid="uid://clnsio22w61n4"]
 
 [ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="1_r154d"]
-[ext_resource type="Texture2D" uid="uid://cl31qwpyc26i8" path="res://resources/textures/well.png" id="2_y8cmo"]
-[ext_resource type="Texture2D" uid="uid://b17x11jna310f" path="res://resources/textures/house.png" id="3_t31te"]
-[ext_resource type="Texture2D" uid="uid://byxabi0a0m1nt" path="res://resources/textures/barn.png" id="4_l11ar"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_34761"]
-size = Vector2(500, 500)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7rrq"]
-size = Vector2(801, 600)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_we1mb"]
-size = Vector2(1350, 300)
+[ext_resource type="PackedScene" uid="uid://c06ey3v1h2a37" path="res://scenes/props/House.tscn" id="2_sbdc8"]
+[ext_resource type="PackedScene" uid="uid://blnp628jwjof8" path="res://scenes/props/Barn.tscn" id="3_r4wh8"]
+[ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="4_708sa"]
 
 [node name="Tutorial test lvl" type="Node2D"]
 
@@ -30,59 +21,29 @@ layer_3/tile_data = PackedInt32Array(65540, 29, 3, 65541, 131101, 3)
 layer_4/name = "stone"
 layer_4/tile_data = PackedInt32Array(458763, 327709, 3, 196620, 262173, 3, 458762, 262173, 3, 131084, 327709, 3)
 
-[node name="well_1" type="StaticBody2D" parent="."]
-position = Vector2(3750, 1250)
+[node name="House" parent="." instance=ExtResource("2_sbdc8")]
+position = Vector2(2946, 748)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="well_1"]
-shape = SubResource("RectangleShape2D_34761")
+[node name="Barn" parent="." instance=ExtResource("3_r4wh8")]
+position = Vector2(6760, 3191)
 
-[node name="Sprite2D" type="Sprite2D" parent="well_1"]
-texture = ExtResource("2_y8cmo")
+[node name="Well" parent="." instance=ExtResource("4_708sa")]
+position = Vector2(3793, 3794)
 
-[node name="well_2" type="StaticBody2D" parent="."]
-position = Vector2(7750, 1250)
+[node name="Well2" parent="." instance=ExtResource("4_708sa")]
+position = Vector2(7809, 3812)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="well_2"]
-shape = SubResource("RectangleShape2D_34761")
+[node name="Well3" parent="." instance=ExtResource("4_708sa")]
+position = Vector2(3793, 1253)
 
-[node name="Sprite2D" type="Sprite2D" parent="well_2"]
-texture = ExtResource("2_y8cmo")
+[node name="Well4" parent="." instance=ExtResource("4_708sa")]
+position = Vector2(7779, 1241)
 
-[node name="well_3" type="StaticBody2D" parent="."]
-position = Vector2(3750, 3750)
+[node name="CameraLimitA" type="Node2D" parent="."]
+position = Vector2(-1342, -1330)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="well_3"]
-shape = SubResource("RectangleShape2D_34761")
+[node name="CameraLimitA2" type="Node2D" parent="."]
+position = Vector2(9290, 6281)
 
-[node name="Sprite2D" type="Sprite2D" parent="well_3"]
-texture = ExtResource("2_y8cmo")
-
-[node name="well_4" type="StaticBody2D" parent="."]
-position = Vector2(7750, 3750)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="well_4"]
-shape = SubResource("RectangleShape2D_34761")
-
-[node name="Sprite2D" type="Sprite2D" parent="well_4"]
-texture = ExtResource("2_y8cmo")
-
-[node name="house_1" type="StaticBody2D" parent="."]
-position = Vector2(3000, 504)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="house_1"]
-position = Vector2(-3, 172)
-shape = SubResource("RectangleShape2D_f7rrq")
-
-[node name="Sprite2D" type="Sprite2D" parent="house_1"]
-position = Vector2(0, -250)
-texture = ExtResource("3_t31te")
-
-[node name="barn_1" type="StaticBody2D" parent="."]
-position = Vector2(6750, 3249)
-
-[node name="Sprite2D" type="Sprite2D" parent="barn_1"]
-texture = ExtResource("4_l11ar")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="barn_1"]
-position = Vector2(10, 83)
-shape = SubResource("RectangleShape2D_we1mb")
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(2973, 1450)

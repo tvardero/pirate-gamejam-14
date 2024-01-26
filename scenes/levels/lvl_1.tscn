@@ -33,3 +33,12 @@ position = Vector2(4242, 2277)
 
 [node name="House" parent="." instance=ExtResource("4_wrwln")]
 position = Vector2(3535, 2110)
+
+[node name="CameraLimitA" type="Node2D" parent="."]
+position = Vector2(-1361, -1361)
+
+[node name="CameraLimitB" type="Node2D" parent="."]
+position = Vector2(7348, 5362)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(3145, 2731)
