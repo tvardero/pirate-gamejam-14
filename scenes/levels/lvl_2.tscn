@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://m6jbdo7u8drb"]
 
 [ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="1_ojlwc"]
-[ext_resource type="Texture2D" uid="uid://dm5skdnq7d1ce" path="res://textures/well.png" id="2_0efsx"]
-[ext_resource type="Texture2D" uid="uid://hkuklda413qd" path="res://textures/house.png" id="3_bi5re"]
-[ext_resource type="Texture2D" uid="uid://cdljb62a7i4hr" path="res://textures/barn.png" id="3_y0vul"]
-[ext_resource type="Texture2D" uid="uid://gba2r4cjxu77" path="res://textures/silo.png" id="5_cyf4i"]
+[ext_resource type="Texture2D" uid="uid://cl31qwpyc26i8" path="res://resources/textures/well.png" id="2_0efsx"]
+[ext_resource type="Texture2D" uid="uid://b17x11jna310f" path="res://resources/textures/house.png" id="3_bi5re"]
+[ext_resource type="Texture2D" uid="uid://byxabi0a0m1nt" path="res://resources/textures/barn.png" id="3_y0vul"]
+[ext_resource type="Texture2D" uid="uid://b8vadb564w66m" path="res://resources/textures/silo.png" id="5_cyf4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6ytw"]
 size = Vector2(500, 500)

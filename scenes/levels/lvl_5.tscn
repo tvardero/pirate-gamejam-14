@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dype150hv31y3"]
 
 [ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="1_ke7ji"]
-[ext_resource type="Texture2D" uid="uid://dm5skdnq7d1ce" path="res://textures/well.png" id="2_lyyln"]
-[ext_resource type="Texture2D" uid="uid://gba2r4cjxu77" path="res://textures/silo.png" id="3_ae85c"]
+[ext_resource type="Texture2D" uid="uid://cl31qwpyc26i8" path="res://resources/textures/well.png" id="2_lyyln"]
+[ext_resource type="Texture2D" uid="uid://b8vadb564w66m" path="res://resources/textures/silo.png" id="3_ae85c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oc67b"]
 size = Vector2(500, 500)
