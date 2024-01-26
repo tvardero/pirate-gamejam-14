@@ -14,7 +14,7 @@ config/name="Gamejam"
 run/main_scene="res://scenes/ui/SplashGameLoader.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://resources/background/splash.png"
+boot_splash/image="res://resources/ui/splash.png"
 boot_splash/fullsize=false
 config/icon="res://resources/icon.png"
 

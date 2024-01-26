@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj1j4sn1n0jvj"]
 
-[ext_resource type="Texture2D" uid="uid://dm5skdnq7d1ce" path="res://textures/well.png" id="1_48ite"]
+[ext_resource type="Texture2D" uid="uid://cl31qwpyc26i8" path="res://resources/textures/well.png" id="1_48ite"]
 [ext_resource type="Script" path="res://scenes/props/Well.cs" id="1_td4p1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rqyi0"]
