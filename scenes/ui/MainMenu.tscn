@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqassst3dxo01"]
+[gd_scene load_steps=10 format=3 uid="uid://cqassst3dxo01"]
 
 [ext_resource type="Script" path="res://scenes/ui/MainMenu.cs" id="1_aqcx4"]
-[ext_resource type="PackedScene" uid="uid://n4ofpyimax4d" path="res://scenes/levels/Tutorial001.tscn" id="2_bnqrq"]
+[ext_resource type="PackedScene" uid="uid://clnsio22w61n4" path="res://scenes/levels/Tutorial.tscn" id="2_iayb3"]
 [ext_resource type="Texture2D" uid="uid://c087i8eyqgsg3" path="res://resources/ui/menuBG2.jpg" id="3_mp1r4"]
+[ext_resource type="PackedScene" uid="uid://32u6acf2r3kp" path="res://scenes/levels/Lvl1.tscn" id="3_xcgs1"]
+[ext_resource type="PackedScene" uid="uid://m6jbdo7u8drb" path="res://scenes/levels/Lvl2.tscn" id="4_14j11"]
 [ext_resource type="PackedScene" uid="uid://d0whsl1cw6ad3" path="res://scenes/ui/OptionsMenu.tscn" id="4_kx3c2"]
+[ext_resource type="PackedScene" uid="uid://bhp5x0c6sbxc0" path="res://scenes/levels/Lvl3.tscn" id="5_d3k0b"]
+[ext_resource type="PackedScene" uid="uid://mo84ivgmxddc" path="res://scenes/levels/Lvl4.tscn" id="6_y6b2j"]
+[ext_resource type="PackedScene" uid="uid://dype150hv31y3" path="res://scenes/levels/Lvl5.tscn" id="7_156o8"]
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -14,8 +19,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aqcx4")
-LevelsToSelect = [ExtResource("2_bnqrq")]
-LevelNames = PackedStringArray("Tutorial 1")
+LevelsToSelect = [ExtResource("2_iayb3"), ExtResource("3_xcgs1"), ExtResource("4_14j11"), ExtResource("5_d3k0b"), ExtResource("6_y6b2j"), ExtResource("7_156o8")]
+LevelNames = PackedStringArray("Tutorial", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

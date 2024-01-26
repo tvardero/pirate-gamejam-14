@@ -20,7 +20,7 @@ public partial class Game : Node
         GetTree().Root.SetInputAsHandled();
     }
 
-    public void ReplaceLevelWith(LevelBase newLevel)
+    public void ReplaceLevelWith(Node2D newLevel)
     {
         GetCurrentLevel()?.QueueFree();
         newLevel.Name = "Level" + _counter++;

@@ -49,9 +49,7 @@ public partial class MainMenu : Control
         var play = mainMenu.GetNode<Button>("PlayButton");
         play.Pressed += () =>
         {
-            var levelPath = GameData.PlayerStats.LastPlayedLevel ?? "res://scenes/levels/Tutorial001.tscn";
-            var levelPacked = GD.Load<PackedScene>(levelPath);
-            LaunchScene(levelPacked);
+            LaunchScene(GameData.PlayerStats.LastPlayedLevel ?? TutorialLevelName);
         };
         if (GameData.PlayerStats.LastPlayedLevel != null) play.Text = "Continue";
 
@@ -84,9 +82,8 @@ public partial class MainMenu : Control
         for (var i = 0; i < LevelsToSelect.Length; i++)
         {
             var name = LevelNames[i];
-            var packed = LevelsToSelect[i];
             var button = new Button { Text = name };
-            button.Pressed += () => LaunchScene(packed);
+            button.Pressed += () => LaunchScene(name);
             button.Disabled = !(name == TutorialLevelName || GameData.PlayerStats.UnlockedLevels.Contains(name));
             selectMenu.AddChild(button);
         }
@@ -106,11 +103,14 @@ public partial class MainMenu : Control
         GetNode<Button>("Container/MainMenu/OptionsButton").GrabFocus();
     }
 
-    private void LaunchScene(PackedScene levelPacked)
+    private void LaunchScene(string levelName)
     {
         var gamePacked = GD.Load<PackedScene>("res://scenes/Game.tscn");
+        var levelIdx = Array.IndexOf(LevelNames, levelName);
+        var levelPacked = LevelsToSelect[levelIdx];
+        
         var game = gamePacked.Instantiate<Game>();
-        game.ReplaceLevelWith(levelPacked.Instantiate<LevelBase>());
+        game.ReplaceLevelWith(levelPacked.Instantiate<Node2D>());
 
         GetTree().Root.GetChild(0).QueueFree();
         GetTree().Root.AddChild(game);

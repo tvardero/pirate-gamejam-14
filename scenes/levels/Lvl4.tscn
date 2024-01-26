@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://mo84ivgmxddc"]
+[gd_scene load_steps=6 format=3 uid="uid://mo84ivgmxddc"]
 
-[ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="1_4i58v"]
-[ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="2_n6b83"]
-[ext_resource type="PackedScene" uid="uid://baag8jpf50gn3" path="res://scenes/props/Silo.tscn" id="3_2cnbq"]
-[ext_resource type="PackedScene" uid="uid://blnp628jwjof8" path="res://scenes/props/Barn.tscn" id="4_135o2"]
+[ext_resource type="Script" path="res://scenes/levels/Lvl4.cs" id="1_r8i22"]
+[ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="2_unv3l"]
+[ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="3_gxuk4"]
+[ext_resource type="PackedScene" uid="uid://baag8jpf50gn3" path="res://scenes/props/Silo.tscn" id="4_10jfw"]
+[ext_resource type="PackedScene" uid="uid://blnp628jwjof8" path="res://scenes/props/Barn.tscn" id="5_5dw3d"]
 
-[node name="lvl_4" type="Node2D"]
+[node name="Lvl4" type="Node2D"]
+script = ExtResource("1_r8i22")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("1_4i58v")
+tile_set = ExtResource("2_unv3l")
 format = 2
 layer_0/name = "bg"
 layer_0/tile_data = PackedInt32Array(5, 29, 1, 6, 29, 1, 7, 29, 1, 65543, 29, 1, 65542, 29, 1, 131078, 29, 1, 196614, 29, 1, 131079, 29, 1, 65541, 29, 1, 131077, 29, 1, 196613, 29, 1, 196615, 29, 1, 262149, 29, 1, 262150, 29, 1, 262151, 29, 1, 327686, 29, 1, 327687, 29, 1, 262152, 29, 1, 327688, 29, 1, 262153, 29, 1, 327689, 29, 1, 327690, 29, 1, 262154, 29, 1, 393226, 29, 1, 393227, 29, 1, 393228, 29, 1, 393229, 29, 1, 327693, 29, 1, 262157, 29, 1, 196621, 29, 1, 196620, 29, 1, 262156, 29, 1, 262155, 29, 1, 196619, 29, 1, 327691, 29, 1, 327692, 29, 1, 196618, 65565, 0, 196617, 65565, 0, 196616, 65565, 0, 131080, 65565, 0, 65544, 65565, 0, 65545, 65565, 0, 65546, 65565, 0, 131082, 65565, 0, 131081, 65565, 0, 65547, 65565, 0, 65548, 65565, 0, 131084, 65565, 0, 131083, 65565, 0, 131085, 65565, 0, 65549, 65565, 0, 65550, 65565, 0, 131086, 65565, 0, 196622, 65565, 0, 262158, 65565, 0, 327694, 65565, 0, 393230, 65565, 0, 458766, 65565, 0, 458765, 65565, 0, 458764, 65565, 0, 458763, 65565, 0, 458762, 65565, 0, 458761, 65565, 0, 393225, 65565, 0, 393224, 65565, 0, 458760, 65565, 0, 458759, 65565, 0, 393223, 65565, 0, 393222, 65565, 0, 458758, 65565, 0, 458757, 65565, 0, 393221, 65565, 0, 327685, 65565, 0, 327684, 65565, 0, 393220, 65565, 0, 458756, 65565, 0, 262148, 65565, 0, 262147, 65565, 0, 196611, 65565, 0, 131075, 65565, 0, 131074, 65565, 0, 131073, 65565, 0, 196609, 65565, 0, 262145, 65565, 0, 262146, 65565, 0, 196610, 65565, 0, 327682, 65565, 0, 327683, 65565, 0, 327681, 65565, 0, -65529, 29, 1, -65530, 29, 1, -65531, 29, 1, -131067, 29, 1, -131066, 29, 1, -131065, 29, 1, -196602, 29, 1, -196603, 29, 1, -196601, 29, 1)
@@ -19,19 +21,19 @@ layer_2/tile_data = PackedInt32Array(131073, 65565, 2, 131074, 65565, 2, 131075,
 layer_3/name = "obstacles"
 layer_3/tile_data = PackedInt32Array(393219, 131101, 3, 393218, 65565, 3, 393217, 65565, 3, -131074, 327709, 3, -65539, 262173, 3, -131075, 327709, 3, -65521, 262173, 3, -131056, 262173, 3, -65520, 327709, 3, 655375, 327709, 3, 589841, 327709, 3, 524305, 262173, 3, 655359, 327709, 3, 655358, 327709, 3, 720895, 262173, 3, 655360, 327709, 3, 655368, 262173, 3, 393213, 327709, 3, -131062, 327709, 3, -131069, 327709, 3, 524302, 131101, 3, 524301, 65565, 3, 524300, 65565, 3, 524299, 65565, 3, 524298, 65565, 3, 524297, 29, 3, 393216, 29, 3)
 
-[node name="Well" parent="." instance=ExtResource("2_n6b83")]
+[node name="Well" parent="." instance=ExtResource("3_gxuk4")]
 position = Vector2(736, 3841)
 
-[node name="Silo" parent="." instance=ExtResource("3_2cnbq")]
+[node name="Silo" parent="." instance=ExtResource("4_10jfw")]
 position = Vector2(2254, 841)
 
-[node name="Silo2" parent="." instance=ExtResource("3_2cnbq")]
+[node name="Silo2" parent="." instance=ExtResource("4_10jfw")]
 position = Vector2(2261, 1326)
 
-[node name="Silo3" parent="." instance=ExtResource("3_2cnbq")]
+[node name="Silo3" parent="." instance=ExtResource("4_10jfw")]
 position = Vector2(2261, 1796)
 
-[node name="Barn" parent="." instance=ExtResource("4_135o2")]
+[node name="Barn" parent="." instance=ExtResource("5_5dw3d")]
 position = Vector2(1249, 691)
 
 [node name="CameraLimitA" type="Node2D" parent="."]
