@@ -1,1 +1,1 @@
-public partial class Tutorial : LevelBase { }
+public partial class Tutorial : LevelBase {}
