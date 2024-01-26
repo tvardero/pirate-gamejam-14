@@ -1,18 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://32u6acf2r3kp"]
+[gd_scene load_steps=5 format=3 uid="uid://32u6acf2r3kp"]
 
 [ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="1_tpp76"]
-[ext_resource type="Texture2D" uid="uid://cl31qwpyc26i8" path="res://resources/textures/well.png" id="2_65tmj"]
-[ext_resource type="Texture2D" uid="uid://b17x11jna310f" path="res://resources/textures/house.png" id="3_8qcs5"]
-[ext_resource type="Texture2D" uid="uid://b8vadb564w66m" path="res://resources/textures/silo.png" id="4_bd6aw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6ytw"]
-size = Vector2(500, 500)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dceeu"]
-size = Vector2(801, 600)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjc81"]
-size = Vector2(400, 300)
+[ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="2_y151j"]
+[ext_resource type="PackedScene" uid="uid://baag8jpf50gn3" path="res://scenes/props/Silo.tscn" id="3_lnpqs"]
+[ext_resource type="PackedScene" uid="uid://c06ey3v1h2a37" path="res://scenes/props/House.tscn" id="4_wrwln"]
 
 [node name="lvl_1" type="Node2D"]
 
@@ -28,55 +19,17 @@ layer_2/tile_data = PackedInt32Array(131079, 29, 2, 131078, 29, 2, 65542, 65565,
 layer_3/name = "obstacles"
 layer_3/tile_data = PackedInt32Array(262153, 262173, 3, 196617, 327709, 3, 327689, 327709, 3, 327688, 262173, 3, 327687, 327709, 3, 458757, 131101, 3, 458756, 65565, 3, 458755, 65565, 3, 458754, 65565, 3, 458753, 29, 3, 5, 131101, 3, 4, 65565, 3, 3, 65565, 3, 2, 65565, 3, 1, 29, 3, 262142, 327709, 3, 393214, 327709, 3, 196606, 327709, 3, 196607, 327709, 3, 524301, 327709, 3, 589836, 262173, 3, 524300, 327709, 3, 589835, 262173, 3, -196596, 262173, 3, -196595, 262173, 3, -131059, 327709, 3, -131070, 262173, 3, -196605, 327709, 3, 720895, 327709, 3, 655360, 327709, 3)
 
-[node name="well_1" type="StaticBody2D" parent="."]
-position = Vector2(2750, 2250)
+[node name="Well" parent="." instance=ExtResource("2_y151j")]
+position = Vector2(2708, 2297)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="well_1"]
-shape = SubResource("RectangleShape2D_j6ytw")
+[node name="Silo" parent="." instance=ExtResource("3_lnpqs")]
+position = Vector2(4242, 1253)
 
-[node name="Sprite2D" type="Sprite2D" parent="well_1"]
-texture = ExtResource("2_65tmj")
+[node name="Silo2" parent="." instance=ExtResource("3_lnpqs")]
+position = Vector2(4242, 1774)
 
-[node name="house_1" type="StaticBody2D" parent="."]
-position = Vector2(3500, 2000)
+[node name="Silo3" parent="." instance=ExtResource("3_lnpqs")]
+position = Vector2(4242, 2277)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="house_1"]
-position = Vector2(-3, 172)
-shape = SubResource("RectangleShape2D_dceeu")
-
-[node name="Sprite2D" type="Sprite2D" parent="house_1"]
-position = Vector2(0, -250)
-texture = ExtResource("3_8qcs5")
-
-[node name="silo_3" type="StaticBody2D" parent="house_1"]
-position = Vector2(750, -749)
-
-[node name="Sprite2D" type="Sprite2D" parent="house_1/silo_3"]
-position = Vector2(0, -250)
-texture = ExtResource("4_bd6aw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="house_1/silo_3"]
-position = Vector2(0, 69.5)
-shape = SubResource("RectangleShape2D_qjc81")
-
-[node name="silo_2" type="StaticBody2D" parent="."]
-position = Vector2(4250, 1750)
-
-[node name="Sprite2D" type="Sprite2D" parent="silo_2"]
-position = Vector2(0, -250)
-texture = ExtResource("4_bd6aw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="silo_2"]
-position = Vector2(0, 69.5)
-shape = SubResource("RectangleShape2D_qjc81")
-
-[node name="silo_1" type="StaticBody2D" parent="."]
-position = Vector2(4250, 2249)
-
-[node name="Sprite2D" type="Sprite2D" parent="silo_1"]
-position = Vector2(0, -250)
-texture = ExtResource("4_bd6aw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="silo_1"]
-position = Vector2(0, 69.5)
-shape = SubResource("RectangleShape2D_qjc81")
+[node name="House" parent="." instance=ExtResource("4_wrwln")]
+position = Vector2(3535, 2110)

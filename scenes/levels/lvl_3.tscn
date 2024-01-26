@@ -1,22 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhp5x0c6sbxc0"]
+[gd_scene load_steps=6 format=3 uid="uid://bhp5x0c6sbxc0"]
 
 [ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="1_6sg74"]
-[ext_resource type="Texture2D" uid="uid://cl31qwpyc26i8" path="res://resources/textures/well.png" id="2_j10qv"]
-[ext_resource type="Texture2D" uid="uid://b17x11jna310f" path="res://resources/textures/house.png" id="3_o0mvd"]
-[ext_resource type="Texture2D" uid="uid://byxabi0a0m1nt" path="res://resources/textures/barn.png" id="4_74wn2"]
-[ext_resource type="Texture2D" uid="uid://b8vadb564w66m" path="res://resources/textures/silo.png" id="5_hdhhl"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6ytw"]
-size = Vector2(500, 500)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufyo0"]
-size = Vector2(800, 800)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_covsp"]
-size = Vector2(1350, 300)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0yc1"]
-size = Vector2(400, 300)
+[ext_resource type="PackedScene" uid="uid://baag8jpf50gn3" path="res://scenes/props/Silo.tscn" id="3_e4qp6"]
+[ext_resource type="PackedScene" uid="uid://blnp628jwjof8" path="res://scenes/props/Barn.tscn" id="4_y1684"]
+[ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="5_2g2m5"]
+[ext_resource type="PackedScene" uid="uid://c06ey3v1h2a37" path="res://scenes/props/House.tscn" id="5_vommi"]
 
 [node name="lvl_3" type="Node2D"]
 
@@ -32,75 +20,23 @@ layer_2/tile_data = PackedInt32Array(65537, 65565, 2, 131073, 65565, 2, 196610, 
 layer_3/name = "obstacles"
 layer_3/tile_data = PackedInt32Array(196619, 262173, 3, 131082, 262173, 3, 65546, 262173, 3, 10, 327709, 3, 196618, 327709, 3, 196620, 262173, 3, 9, 131101, 3, 8, 65565, 3, 7, 65565, 3, 6, 29, 3, 14, 131101, 3, 13, 65565, 3, 12, 65565, 3, 11, 29, 3)
 
-[node name="well_1" type="StaticBody2D" parent="."]
-position = Vector2(2750, 2250)
+[node name="House" parent="." instance=ExtResource("5_vommi")]
+position = Vector2(3502, 2188)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="well_1"]
-shape = SubResource("RectangleShape2D_j6ytw")
+[node name="House2" parent="." instance=ExtResource("5_vommi")]
+position = Vector2(5496, 4154)
 
-[node name="Sprite2D" type="Sprite2D" parent="well_1"]
-texture = ExtResource("2_j10qv")
+[node name="Silo" parent="." instance=ExtResource("3_e4qp6")]
+position = Vector2(4200, 1791)
 
-[node name="house_1" type="StaticBody2D" parent="."]
-position = Vector2(3500, 2000)
+[node name="Silo2" parent="." instance=ExtResource("3_e4qp6")]
+position = Vector2(4200, 2248)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="house_1"]
-position = Vector2(0, 70)
-shape = SubResource("RectangleShape2D_ufyo0")
+[node name="Barn" parent="." instance=ExtResource("4_y1684")]
+position = Vector2(3735, 2699)
 
-[node name="Sprite2D" type="Sprite2D" parent="house_1"]
-position = Vector2(0, -250)
-texture = ExtResource("3_o0mvd")
+[node name="Barn2" parent="." instance=ExtResource("4_y1684")]
+position = Vector2(1751, 701)
 
-[node name="house_2" type="StaticBody2D" parent="."]
-position = Vector2(5500, 4000)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="house_2"]
-position = Vector2(0, 70)
-shape = SubResource("RectangleShape2D_ufyo0")
-
-[node name="Sprite2D" type="Sprite2D" parent="house_2"]
-position = Vector2(0, -250)
-texture = ExtResource("3_o0mvd")
-
-[node name="barn_1" type="StaticBody2D" parent="."]
-position = Vector2(1750, 750)
-
-[node name="Sprite2D" type="Sprite2D" parent="barn_1"]
-texture = ExtResource("4_74wn2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="barn_1"]
-position = Vector2(10, 83)
-shape = SubResource("RectangleShape2D_covsp")
-
-[node name="barn_2" type="StaticBody2D" parent="."]
-position = Vector2(3750, 2749)
-
-[node name="Sprite2D" type="Sprite2D" parent="barn_2"]
-texture = ExtResource("4_74wn2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="barn_2"]
-position = Vector2(10, 83)
-shape = SubResource("RectangleShape2D_covsp")
-
-[node name="silo_2" type="StaticBody2D" parent="."]
-position = Vector2(4250, 1750)
-
-[node name="Sprite2D" type="Sprite2D" parent="silo_2"]
-position = Vector2(0, -250)
-texture = ExtResource("5_hdhhl")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="silo_2"]
-position = Vector2(0, 69.5)
-shape = SubResource("RectangleShape2D_f0yc1")
-
-[node name="silo_1" type="StaticBody2D" parent="."]
-position = Vector2(4250, 2250)
-
-[node name="Sprite2D" type="Sprite2D" parent="silo_1"]
-position = Vector2(0, -250)
-texture = ExtResource("5_hdhhl")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="silo_1"]
-position = Vector2(0, 69.5)
-shape = SubResource("RectangleShape2D_f0yc1")
+[node name="Well" parent="." instance=ExtResource("5_2g2m5")]
+position = Vector2(2767, 2228)

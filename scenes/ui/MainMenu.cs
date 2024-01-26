@@ -3,6 +3,7 @@ using System;
 
 public partial class MainMenu : Control
 {
+    private const string TutorialLevelName = "Tutorial";
     private VBoxContainer _mainMenu = null!;
     private VBoxContainer _selectMenu = null!;
     private OptionsMenu _optionsMenu = null!;
@@ -86,6 +87,7 @@ public partial class MainMenu : Control
             var packed = LevelsToSelect[i];
             var button = new Button { Text = name };
             button.Pressed += () => LaunchScene(packed);
+            button.Disabled = !(name == TutorialLevelName || GameData.PlayerStats.UnlockedLevels.Contains(name));
             selectMenu.AddChild(button);
         }
     }

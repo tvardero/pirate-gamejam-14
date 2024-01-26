@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://baag8jpf50gn3"]
+
+[ext_resource type="Texture2D" uid="uid://b8vadb564w66m" path="res://resources/textures/silo.png" id="1_wemq4"]
+
+[node name="Silo" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -377)
+texture = ExtResource("1_wemq4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-77, 83, 72, 83, 151, 12, 78, -63, -80, -61, -156, 8)

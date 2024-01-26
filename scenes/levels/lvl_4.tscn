@@ -1,18 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://mo84ivgmxddc"]
+[gd_scene load_steps=5 format=3 uid="uid://mo84ivgmxddc"]
 
 [ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="1_4i58v"]
-[ext_resource type="Texture2D" uid="uid://cl31qwpyc26i8" path="res://resources/textures/well.png" id="2_6xeht"]
-[ext_resource type="Texture2D" uid="uid://byxabi0a0m1nt" path="res://resources/textures/barn.png" id="3_fju4r"]
-[ext_resource type="Texture2D" uid="uid://b8vadb564w66m" path="res://resources/textures/silo.png" id="4_amjdq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6ytw"]
-size = Vector2(500, 500)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_46laj"]
-size = Vector2(1346, 195)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8sog3"]
-size = Vector2(400, 300)
+[ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="2_n6b83"]
+[ext_resource type="PackedScene" uid="uid://baag8jpf50gn3" path="res://scenes/props/Silo.tscn" id="3_2cnbq"]
+[ext_resource type="PackedScene" uid="uid://blnp628jwjof8" path="res://scenes/props/Barn.tscn" id="4_135o2"]
 
 [node name="lvl_4" type="Node2D"]
 
@@ -28,54 +19,17 @@ layer_2/tile_data = PackedInt32Array(131073, 65565, 2, 131074, 65565, 2, 131075,
 layer_3/name = "obstacles"
 layer_3/tile_data = PackedInt32Array(393219, 131101, 3, 393218, 65565, 3, 393217, 65565, 3, -131074, 327709, 3, -65539, 262173, 3, -131075, 327709, 3, -65521, 262173, 3, -131056, 262173, 3, -65520, 327709, 3, 655375, 327709, 3, 589841, 327709, 3, 524305, 262173, 3, 655359, 327709, 3, 655358, 327709, 3, 720895, 262173, 3, 655360, 327709, 3, 655368, 262173, 3, 393213, 327709, 3, -131062, 327709, 3, -131069, 327709, 3, 524302, 131101, 3, 524301, 65565, 3, 524300, 65565, 3, 524299, 65565, 3, 524298, 65565, 3, 524297, 29, 3, 393216, 29, 3)
 
-[node name="well_1" type="StaticBody2D" parent="."]
-position = Vector2(750, 3750)
+[node name="Well" parent="." instance=ExtResource("2_n6b83")]
+position = Vector2(736, 3841)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="well_1"]
-shape = SubResource("RectangleShape2D_j6ytw")
+[node name="Silo" parent="." instance=ExtResource("3_2cnbq")]
+position = Vector2(2254, 841)
 
-[node name="Sprite2D" type="Sprite2D" parent="well_1"]
-texture = ExtResource("2_6xeht")
+[node name="Silo2" parent="." instance=ExtResource("3_2cnbq")]
+position = Vector2(2261, 1326)
 
-[node name="barn_1" type="StaticBody2D" parent="."]
-position = Vector2(1250, 750)
+[node name="Silo3" parent="." instance=ExtResource("3_2cnbq")]
+position = Vector2(2261, 1796)
 
-[node name="Sprite2D" type="Sprite2D" parent="barn_1"]
-texture = ExtResource("3_fju4r")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="barn_1"]
-position = Vector2(12, 130.5)
-shape = SubResource("RectangleShape2D_46laj")
-
-[node name="silo_1" type="StaticBody2D" parent="."]
-position = Vector2(2250, 750)
-
-[node name="Sprite2D" type="Sprite2D" parent="silo_1"]
-position = Vector2(0, -250)
-texture = ExtResource("4_amjdq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="silo_1"]
-position = Vector2(0, 69.5)
-shape = SubResource("RectangleShape2D_8sog3")
-
-[node name="silo_2" type="StaticBody2D" parent="."]
-position = Vector2(2250, 1249)
-
-[node name="Sprite2D" type="Sprite2D" parent="silo_2"]
-position = Vector2(0, -250)
-texture = ExtResource("4_amjdq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="silo_2"]
-position = Vector2(0, 69.5)
-shape = SubResource("RectangleShape2D_8sog3")
-
-[node name="silo_3" type="StaticBody2D" parent="."]
-position = Vector2(2250, 1751)
-
-[node name="Sprite2D" type="Sprite2D" parent="silo_3"]
-position = Vector2(0, -250)
-texture = ExtResource("4_amjdq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="silo_3"]
-position = Vector2(0, 69.5)
-shape = SubResource("RectangleShape2D_8sog3")
+[node name="Barn" parent="." instance=ExtResource("4_135o2")]
+position = Vector2(1249, 691)

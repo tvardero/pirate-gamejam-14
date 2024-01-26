@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://blnp628jwjof8"]
+
+[ext_resource type="Texture2D" uid="uid://byxabi0a0m1nt" path="res://resources/textures/barn.png" id="1_ijyax"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_covsp"]
+size = Vector2(1311, 300)
+
+[node name="Barn" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ijyax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 85)
+shape = SubResource("RectangleShape2D_covsp")
