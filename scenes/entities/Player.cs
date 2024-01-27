@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Gamejam.code;
 using Godot;
 
 /// <summary>
@@ -68,7 +69,7 @@ public partial class Player : CharacterBody2D
 
         else if (input.IsActionPressed(InputActionNames.Attack))
         {
-            var interacted = TryInteract();
+            var interacted = TryGetWater();
             if (!interacted) UseBucket();
             inputIsHandled = true;
         }
@@ -93,12 +94,23 @@ public partial class Player : CharacterBody2D
 
         Velocity = CalculateVelocity();
 
-        if (_playerRotationControllerByMouse)
-            RotatePlayerByMouse();
-        else
-            RotatePlayerByJoystick();
+        var walking = _inputVelocityDirection.LengthSquared() > 0.01f;
+        var water = GameData.LevelData?.BucketAmmo > 0;
 
-        SetAnimationParameters();
+        _animationTree.Set("parameters/conditions/idle", !walking);
+        _animationTree.Set("parameters/conditions/walking", walking);
+        _animationTree.Set("parameters/conditions/water", water);
+        _animationTree.Set("parameters/conditions/dry", !water);
+
+        if (_inputVelocityDirection.LengthSquared() <= 0.01f) return;
+        
+        var blendPos = _inputVelocityDirection.Normalized();
+        _animationTree.Set("parameters/idle/blend_position", blendPos);
+        _animationTree.Set("parameters/idle_water/blend_position", blendPos);
+        _animationTree.Set("parameters/walking/blend_position", blendPos);
+        _animationTree.Set("parameters/walking_water/blend_position", blendPos);
+
+        _interactRay.TargetPosition = blendPos * 200f;
 
         return;
 
@@ -111,52 +123,13 @@ public partial class Player : CharacterBody2D
         }
     }
 
-    private void RotatePlayerByJoystick()
-    {
-        var x = Input.GetAxis(InputActionNames.JoystickCameraLeft, InputActionNames.JoystickCameraRight);
-        var y = Input.GetAxis(InputActionNames.JoystickCameraUp, InputActionNames.JoystickCameraDown);
-        var cameraVector = new Vector2(x, y);
-
-        if (cameraVector.Length() < 0.35) return; // dont reset camera angle when we release left joystick
-
-        PlayerRotation = -cameraVector.AngleTo(Vector2.Up);
-    }
-
-    private void RotatePlayerByMouse()
-    {
-        var playerPosOnScreen = GetGlobalTransformWithCanvas().Origin;
-        var mousePosOnScreen = GetViewport().GetMousePosition();
-        var cameraVector = mousePosOnScreen - playerPosOnScreen;
-
-        PlayerRotation = -cameraVector.AngleTo(Vector2.Up);
-    }
-
-    private void SetAnimationParameters()
-    {
-        var walking = _inputVelocityDirection.LengthSquared() > 0.01f;
-        var water = GameData.LevelData?.BucketAmmo > 0;
-
-        _animationTree.Set("parameters/conditions/idle", !walking);
-        _animationTree.Set("parameters/conditions/walking", walking);
-        _animationTree.Set("parameters/conditions/water", water);
-        _animationTree.Set("parameters/conditions/dry", !water);
-
-        var blendPos = Vector2.Up.Rotated(PlayerRotation);
-        _animationTree.Set("parameters/idle/blend_position", blendPos);
-        _animationTree.Set("parameters/idle_water/blend_position", blendPos);
-        _animationTree.Set("parameters/walking/blend_position", blendPos);
-        _animationTree.Set("parameters/walking_water/blend_position", blendPos);
-    }
-
-    private bool TryInteract()
+    private bool TryGetWater()
     {
         var collision = _interactRay.GetCollider();
-        if (collision is not Area2D area2D) return false;
+        if (collision is not Area2D) return false;
 
-        var areaParent = area2D.GetParent();
-        if (areaParent is not IInteractable interactable) return false;
+        if (GameData.LevelData != null) GameData.LevelData.BucketAmmo = LevelData.MaxBucketAmmo;
 
-        interactable.Interact(this);
         return true;
     }
 
@@ -164,8 +137,6 @@ public partial class Player : CharacterBody2D
     {
         if (GameData.LevelData == null) return;
         if (GameData.LevelData.BucketAmmo <= 0) return;
-
-        throw new NotImplementedException();
 
         GameData.LevelData.BucketAmmo--;
     }

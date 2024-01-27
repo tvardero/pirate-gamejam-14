@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://clnsio22w61n4"]
+[gd_scene load_steps=7 format=3 uid="uid://clnsio22w61n4"]
 
 [ext_resource type="Script" path="res://scenes/levels/Tutorial.cs" id="1_gnhru"]
 [ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="2_da5q7"]
 [ext_resource type="PackedScene" uid="uid://c06ey3v1h2a37" path="res://scenes/props/House.tscn" id="3_emsod"]
+[ext_resource type="Script" path="res://code/FireSpread.cs" id="3_vt3ht"]
 [ext_resource type="PackedScene" uid="uid://blnp628jwjof8" path="res://scenes/props/Barn.tscn" id="4_078yx"]
 [ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="5_w5f0a"]
 
@@ -23,6 +24,10 @@ layer_3/name = "fence"
 layer_3/tile_data = PackedInt32Array(65540, 29, 3, 65541, 131101, 3)
 layer_4/name = "stone"
 layer_4/tile_data = PackedInt32Array(458763, 327709, 3, 196620, 262173, 3, 458762, 262173, 3, 131084, 327709, 3)
+layer_5/name = "fire"
+layer_5/tile_data = PackedInt32Array()
+script = ExtResource("3_vt3ht")
+Size = Rect2i(0, 0, 18, 12)
 
 [node name="House" parent="." instance=ExtResource("3_emsod")]
 position = Vector2(2946, 748)

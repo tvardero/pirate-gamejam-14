@@ -7,6 +7,7 @@ public abstract partial class LevelBase : Node2D
     public override void _Ready()
     {
         SpawnPlayer();
+        GameData.ResetLevelData();
     }
 
     private void SpawnPlayer(float playerRotation = 0)

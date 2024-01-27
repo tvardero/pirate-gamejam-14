@@ -32,14 +32,11 @@ public partial class Game : Node
     {
         GetTree().Paused = paused;
 
-        var gameUi = GetNode<Control>("UI/GameUi");
+        var gameUi = GetNode<GameUi>("UI/GameUi");
         gameUi.Visible = !paused;
-
-        GetCurrentLevel()?.SetProcessUnhandledInput(!paused);
 
         var pauseMenu = GetNode<PauseMenu>("UI/PauseMenu");
         pauseMenu.Visible = paused;
-        pauseMenu.SetProcessUnhandledInput(paused);
         if (paused) pauseMenu.GrabFocusOnOpen();
     }
 
