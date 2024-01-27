@@ -28,6 +28,8 @@ layer_5/name = "fire"
 layer_5/tile_data = PackedInt32Array()
 script = ExtResource("3_vt3ht")
 Size = Rect2i(0, 0, 18, 12)
+SpreadFreqSeconds = 1.0
+SpreadChance = 0.3
 
 [node name="House" parent="." instance=ExtResource("3_emsod")]
 position = Vector2(2946, 748)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhp5x0c6sbxc0"]
+[gd_scene load_steps=8 format=3 uid="uid://bhp5x0c6sbxc0"]
 
 [ext_resource type="Script" path="res://scenes/levels/Lvl3.cs" id="1_a8lcn"]
 [ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="1_dhje5"]
 [ext_resource type="PackedScene" uid="uid://c06ey3v1h2a37" path="res://scenes/props/House.tscn" id="2_ygya6"]
 [ext_resource type="PackedScene" uid="uid://baag8jpf50gn3" path="res://scenes/props/Silo.tscn" id="3_16xo4"]
+[ext_resource type="Script" path="res://code/FireSpread.cs" id="3_m12r3"]
 [ext_resource type="PackedScene" uid="uid://blnp628jwjof8" path="res://scenes/props/Barn.tscn" id="4_dysjk"]
 [ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="5_0u6hy"]
 
@@ -22,6 +23,12 @@ layer_2/name = "stubbles"
 layer_2/tile_data = PackedInt32Array(65537, 65565, 2, 131073, 65565, 2, 196610, 65565, 2, 262146, 65565, 2, 327682, 65565, 2, 393218, 65565, 2, 393217, 65565, 2, 458753, 29, 2, 262145, 65565, 2, 196609, 65565, 2, 327681, 65565, 2, 458754, 29, 2, 458755, 29, 2, 458756, 29, 2, 458757, 29, 2, 458758, 29, 2, 458759, 29, 2, 458760, 29, 2, 458761, 29, 2, 393225, 65565, 2, 393224, 65565, 2, 393223, 65565, 2, 393222, 65565, 2, 393221, 65565, 2, 393220, 65565, 2, 393219, 65565, 2, 327684, 65565, 2, 131077, 29, 2, 65541, 65565, 2, 196612, 65565, 2, 262148, 65565, 2, 131075, 65565, 2, 131074, 65565, 2, 131076, 65565, 2, 196611, 65565, 2, 262147, 65565, 2, 327683, 65565, 2, 131078, 29, 2, 131079, 29, 2, 65543, 65565, 2, 65542, 65565, 2, 65544, 65565, 2, 131081, 65565, 2, 65545, 65565, 2, 131080, 29, 2, 65550, 65565, 2, 65549, 65565, 2, 65548, 65565, 2, 65547, 65565, 2, 131083, 29, 2, 131084, 29, 2, 131085, 65565, 2, 131086, 65565, 2, 196622, 65565, 2, 196621, 65565, 2, 262158, 65565, 2, 327694, 65565, 2, 393230, 65565, 2, 393229, 65565, 2, 458765, 29, 2, 458766, 29, 2, 327693, 65565, 2, 262157, 65565, 2, 393228, 65565, 2, 262156, 65565, 2, 262155, 65565, 2, 262154, 65565, 2, 196617, 65565, 2, 262153, 65565, 2, 327689, 65565, 2, 327690, 65565, 2, 393226, 29, 2, 327691, 65565, 2, 393227, 29, 2, 327692, 65565, 2, 458764, 29, 2)
 layer_3/name = "obstacles"
 layer_3/tile_data = PackedInt32Array(196619, 262173, 3, 131082, 262173, 3, 65546, 262173, 3, 10, 327709, 3, 196618, 327709, 3, 196620, 262173, 3, 9, 131101, 3, 8, 65565, 3, 7, 65565, 3, 6, 29, 3, 14, 131101, 3, 13, 65565, 3, 12, 65565, 3, 11, 29, 3)
+layer_4/name = "fire"
+layer_4/tile_data = PackedInt32Array()
+script = ExtResource("3_m12r3")
+Size = Rect2i(0, 0, 15, 9)
+SpreadFreqSeconds = 0.75
+SpreadChance = 0.3
 
 [node name="House" parent="." instance=ExtResource("2_ygya6")]
 position = Vector2(3502, 2188)

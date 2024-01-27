@@ -86,7 +86,7 @@ public partial class MainMenu : Control
             var name = LevelNames[i];
             var button = new Button { Text = name };
             button.Pressed += () => LaunchScene(name);
-            button.Disabled = !(name == TutorialLevelName || GameData.PlayerStats.UnlockedLevels.Contains(name));
+            // button.Disabled = !(name == TutorialLevelName || GameData.PlayerStats.UnlockedLevels.Contains(name));
             selectMenu.AddChild(button);
         }
     }
