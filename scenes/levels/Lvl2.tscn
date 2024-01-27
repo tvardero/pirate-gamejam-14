@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://m6jbdo7u8drb"]
+[gd_scene load_steps=10 format=3 uid="uid://m6jbdo7u8drb"]
 
 [ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="1_ppdd5"]
 [ext_resource type="Script" path="res://scenes/levels/Lvl2.cs" id="1_q6rl8"]
@@ -7,6 +7,12 @@
 [ext_resource type="Script" path="res://code/FireSpread.cs" id="3_hs6ao"]
 [ext_resource type="PackedScene" uid="uid://cj1j4sn1n0jvj" path="res://scenes/props/Well.tscn" id="4_741ud"]
 [ext_resource type="PackedScene" uid="uid://c06ey3v1h2a37" path="res://scenes/props/House.tscn" id="5_h3wn2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2a08"]
+size = Vector2(11026.5, 242)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrmw6"]
+size = Vector2(373, 8013.5)
 
 [node name="Lvl2" type="Node2D"]
 y_sort_enabled = true
@@ -53,3 +59,21 @@ position = Vector2(9341, 7320)
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(5498, 2246)
+
+[node name="world_border" type="StaticBody2D" parent="."]
+
+[node name="top" type="CollisionShape2D" parent="world_border"]
+position = Vector2(4006, -291)
+shape = SubResource("RectangleShape2D_p2a08")
+
+[node name="left" type="CollisionShape2D" parent="world_border"]
+position = Vector2(-499, 3201)
+shape = SubResource("RectangleShape2D_lrmw6")
+
+[node name="bottom" type="CollisionShape2D" parent="world_border"]
+position = Vector2(3956, 6432)
+shape = SubResource("RectangleShape2D_p2a08")
+
+[node name="right" type="CollisionShape2D" parent="world_border"]
+position = Vector2(8542, 3140)
+shape = SubResource("RectangleShape2D_lrmw6")

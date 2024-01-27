@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://mo84ivgmxddc"]
+[gd_scene load_steps=9 format=3 uid="uid://mo84ivgmxddc"]
 
 [ext_resource type="Script" path="res://scenes/levels/Lvl4.cs" id="1_r8i22"]
 [ext_resource type="TileSet" uid="uid://dkiqte40full1" path="res://resources/GameTileset.tres" id="2_unv3l"]
@@ -6,6 +6,12 @@
 [ext_resource type="Script" path="res://code/FireSpread.cs" id="3_xin8r"]
 [ext_resource type="PackedScene" uid="uid://baag8jpf50gn3" path="res://scenes/props/Silo.tscn" id="4_10jfw"]
 [ext_resource type="PackedScene" uid="uid://blnp628jwjof8" path="res://scenes/props/Barn.tscn" id="5_5dw3d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcn35"]
+size = Vector2(11026.5, 242)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3wn8"]
+size = Vector2(373, 8013.5)
 
 [node name="Lvl4" type="Node2D"]
 y_sort_enabled = true
@@ -52,3 +58,21 @@ position = Vector2(9293, 5864)
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(1467, 3878)
+
+[node name="world_border" type="StaticBody2D" parent="."]
+
+[node name="top" type="CollisionShape2D" parent="world_border"]
+position = Vector2(4006, -291)
+shape = SubResource("RectangleShape2D_mcn35")
+
+[node name="left" type="CollisionShape2D" parent="world_border"]
+position = Vector2(-408, 2485)
+shape = SubResource("RectangleShape2D_e3wn8")
+
+[node name="bottom" type="CollisionShape2D" parent="world_border"]
+position = Vector2(3986, 4940)
+shape = SubResource("RectangleShape2D_mcn35")
+
+[node name="right" type="CollisionShape2D" parent="world_border"]
+position = Vector2(8593, 2495)
+shape = SubResource("RectangleShape2D_e3wn8")
