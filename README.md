@@ -1,4 +1,4 @@
-Gamejam project, was made for [Pieate Software gamejam 14](https://itch.io/jam/pirate).
+Gamejam project, was made for [Pirate Software gamejam 14](https://itch.io/jam/pirate).
 
 # Required technology
 
