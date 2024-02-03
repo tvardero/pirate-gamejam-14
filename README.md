@@ -1,4 +1,4 @@
-﻿Some basic readme where I'll add notes on how to setup project, run, debug and test.
+Gamejam project, was made for [Pieate Software gamejam 14](https://itch.io/jam/pirate).
 
 # Required technology
 
@@ -18,7 +18,3 @@
 ## ...make godot to open my favorite code editor?
 
 See [these instructions](https://docs.godotengine.org/en/stable/tutorials/editor/external_editor.html).
-
-## ...make my favorite code editor debug in Godot?
-
-(TBD)
